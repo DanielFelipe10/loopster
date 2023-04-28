@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">Looptser</string>
+    <string name="app_name">looptser</string>
+
+    <!--    login and register values   -->
+    <string name="eslogan">MAKE A LOOP</string>
+    <string name="user_login">Ingresar</string>
+    <string name="user_login_action">INICIAR SESIÓN</string>
+    <string name="user_register">Registro</string>
+    <string name="user_register_upper">REGISTRO</string>
+    <string name="user_register_action">Resgistrarme</string>
+    <string name="user_user">Usuario</string>
+    <string name="user_password">Contraseña</string>
+    <string name="user_password_forgot">¿Olvidaste tu contraseña?</string>
+    <string name="user_no_account">¿No tienes una cuenta?</string>
+    <string name="user_have_account">¿Tienes una cuenta?</string>
+    <string name="user_option">o bien</string>
+    <string name="user_email">Email</string>
+    <string name="user_verify_password">Verifique su contraseña</string>
+    <string name="user_google_login">INGRESE CON GOOGLE</string>
 </resources>

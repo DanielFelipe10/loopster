@@ -9,5 +9,8 @@
     <!--    app colors here -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="sub">#C6C6C6</color>
+    <color name="sub_minimal">#DFDFDF</color>
+    <color name="sub_strong">#5E5E5E</color>
     <color name="orange">#FC4D08</color>
 </resources>
