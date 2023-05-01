@@ -1,13 +1,14 @@
 package com.example.looptser.Fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import androidx.fragment.app.Fragment;
+
+import com.bumptech.glide.Glide;
 import com.example.looptser.R;
 
 /**
@@ -25,6 +26,7 @@ public class Profile_Fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ImageView uPortada, uPerfil;
 
     public Profile_Fragment() {
         // Required empty public constructor
@@ -61,6 +63,20 @@ public class Profile_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile_, container, false);
+
+
+        uPortada = view.findViewById(R.id.portada);
+        Glide.with(getActivity())
+                .load(R.drawable.portada_u)
+                .into(uPortada);
+
+        uPerfil = view.findViewById(R.id.imgPerfil);
+        Glide.with(this)
+                .load(R.drawable.perfil)
+                .into(uPerfil);
+
+
+        return view;
     }
 }

@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Looptser</string>
+    <string name="app_name">looptser</string>
+    <string name="user_name">Daniel Tovar</string>
+    <string name="user_email">daniel.tovar@gmail.com</string>
 </resources>
