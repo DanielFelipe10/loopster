@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="border_radius">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">15dp</item>
@@ -12,5 +13,10 @@
         <item name="showMotionSpec">@null</item>
         <item name="hideMotionSpec">@null</item>
         <item name="itemRippleColor">@null</item>
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:background"></item>
+        <item name="android:padding">8dp</item>
     </style>
 </resources>

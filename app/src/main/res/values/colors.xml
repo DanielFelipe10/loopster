@@ -14,6 +14,9 @@
     <color name="sub_strong">#5E5E5E</color>
     <color name="orange">#FC4D08</color>
     <color name="light_gray">#777777</color>
+    <color name="grayLight">#7d7d7d</color>
+    <color name="grayDark">#d9d9d9</color>
+    <color name="orangePeaches">#ffdbcd</color>
     <color name="soft_orange">#FF7B47</color>
     <color name="semi_transparent">#F4EDED</color>
 </resources>
