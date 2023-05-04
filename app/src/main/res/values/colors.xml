@@ -13,11 +13,8 @@
     <color name="sub_minimal">#DFDFDF</color>
     <color name="sub_strong">#5E5E5E</color>
     <color name="orange">#FC4D08</color>
-<<<<<<< HEAD
     <color name="grayLight">#7d7d7d</color>
     <color name="grayDark">#d9d9d9</color>
     <color name="orangePeaches">#ffdbcd</color>
-=======
     <color name="soft_orange">#FF7B47</color>
->>>>>>> b836b064ad8d97f57c707639f180743e5ce9d3f7
 </resources>

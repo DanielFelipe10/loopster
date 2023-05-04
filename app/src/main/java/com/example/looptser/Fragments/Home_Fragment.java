@@ -1,5 +1,6 @@
 package com.example.looptser.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,8 @@ import com.example.looptser.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Home_Fragment extends Fragment {
+
+    FirebaseAuth fAuth = FirebaseAuth.getInstance();
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -44,8 +47,7 @@ public class Home_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_, container, false);
 
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
-        Button mName = (Button)view.findViewById(R.id.testLog);
+        Button mName = view.findViewById(R.id.testLog);
 
         mName.setOnClickListener(new View.OnClickListener() {
             @Override
