@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.looptser">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -16,9 +15,14 @@
         android:theme="@style/Theme.Looptser"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
+            android:name=".ChatActivity"
+            android:exported="false" />
+=======
             android:name=".SignupActivity"
             android:exported="false"
             android:theme="@style/Theme.Design.NoActionBar"/>
+>>>>>>> b836b064ad8d97f57c707639f180743e5ce9d3f7
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
