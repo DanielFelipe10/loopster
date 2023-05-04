@@ -13,4 +13,7 @@
     <color name="sub_minimal">#DFDFDF</color>
     <color name="sub_strong">#5E5E5E</color>
     <color name="orange">#FC4D08</color>
+    <color name="grayLight">#7d7d7d</color>
+    <color name="grayDark">#d9d9d9</color>
+    <color name="orangePeaches">#ffdbcd</color>
 </resources>
