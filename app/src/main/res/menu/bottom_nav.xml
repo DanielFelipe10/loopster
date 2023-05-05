@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:title=""
         android:id="@+id/dashbord"
@@ -13,8 +14,6 @@
         android:icon="@drawable/svg_notification" />
     <item
         android:title=""
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/add"
         android:enabled="true"
         android:icon="@drawable/svg_add" />

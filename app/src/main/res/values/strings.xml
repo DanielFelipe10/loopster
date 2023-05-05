@@ -1,8 +1,13 @@
 <resources>
+    <!--    user profile values   -->
     <string name="app_name">looptser</string>
+    <string name="user_name">Daniel Tovar</string>
+    <string name="user_email_">daniel.tovar@gmail.com</string>
+    <string name="active">Activo(a)</string>
+    <string name="post">PUBLICACIONES</string>
 
     <!--    login and register values   -->
-    <string name="eslogan">MAKE A LOOP</string>
+    <string name="slogan">MAKE A LOOP</string>
     <string name="user_login">Ingresar</string>
     <string name="user_login_action">INICIAR SESIÓN</string>
     <string name="user_login_action_lower">Iniciar Sesión</string>
@@ -18,4 +23,5 @@
     <string name="user_email">Email</string>
     <string name="user_verify_password">Verifique su contraseña</string>
     <string name="user_google_login">INGRESE CON GOOGLE</string>
+
 </resources>

@@ -12,34 +12,345 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView2"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="79dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/regular_font"
+            android:text="FOTOS"
+            android:textAlignment="center"
+            android:textColor="@color/sub_strong"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <ImageView
+            android:id="@+id/portada"
+            android:layout_width="match_parent"
+            android:layout_height="162dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/portada_u"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgPerfil"
+            android:layout_width="151dp"
+            android:layout_height="145dp"
+            android:layout_marginTop="64dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintStart_toStartOf="@+id/portada"
+            app:layout_constraintTop_toTopOf="@+id/portada"
+            tools:ignore="MissingConstraints"
+            tools:src="@drawable/perfil" />
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Profile"
-            tools:layout_editor_absoluteX="4dp"
-            tools:layout_editor_absoluteY="-17dp" />
-
-        <Button
-            android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="490dp"
-            android:text="Button"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/visby_font"
+            android:text="@string/user_name"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgPerfil" />
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/regular_font"
+            android:text="@string/user_email_"
+            android:textAlignment="center"
+            android:textColor="@color/light_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="380dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+            <LinearLayout
+                android:layout_width="125.3dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/numAmigos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/visby_font"
+                    android:text="358"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="35sp" />
+
+                <TextView
+                    android:id="@+id/labelAmigos"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:fontFamily="@font/regular_font"
+                    android:text="Amigos"
+                    android:textAlignment="center"
+                    android:textColor="@color/light_gray"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="125.3dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/numLoops"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/visby_font"
+                    android:text="18"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="35sp" />
+
+                <TextView
+                    android:id="@+id/labelLoops"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:fontFamily="@font/regular_font"
+                    android:text="Loops"
+                    android:textAlignment="center"
+                    android:textColor="@color/light_gray"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="125.3dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/numSeguidores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/visby_font"
+                    android:text="147"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="35sp" />
+
+                <TextView
+                    android:id="@+id/labelSeguidores"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:fontFamily="@font/regular_font"
+                    android:text="Seguidores"
+                    android:textAlignment="center"
+                    android:textColor="@color/light_gray"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="409dp"
+            android:layout_height="190dp"
+            android:layout_marginTop="16dp"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/perfil"
+                    app:shapeAppearanceOverlay="@style/border_radius" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/perfil"
+                    app:shapeAppearanceOverlay="@style/border_radius" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/perfil"
+                    app:shapeAppearanceOverlay="@style/border_radius" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <RelativeLayout
+            android:id="@+id/SobreMi"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@drawable/borders_profile"
+            app:layout_constraintBottom_toBottomOf="@+id/imgPerfil"
+            app:layout_constraintEnd_toStartOf="@+id/imgPerfil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/portada">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/more_s"
+                    android:layout_width="23dp"
+                    android:layout_height="22dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/more_simbol"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/SobreMilabel"
+                    android:layout_width="63dp"
+                    android:layout_height="17dp"
+                    android:fontFamily="@font/regular_font"
+                    android:text="Sobre mi"
+                    android:textColor="@color/sub_strong"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/more_s"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/Active"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@drawable/borders_profile"
+            app:layout_constraintBottom_toBottomOf="@+id/imgPerfil"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgPerfil"
+            app:layout_constraintTop_toBottomOf="@+id/portada">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/dot_active"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/dot_active"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/ActivoLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular_font"
+                    android:text="@string/active"
+                    android:textColor="@color/sub_strong"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.238"
+                    app:layout_constraintStart_toEndOf="@+id/dot_active"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/edit_icon"
+            android:layout_width="17dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/edit"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.109"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/Active"
+            app:layout_constraintVertical_bias="0.289" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="79dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/regular_font"
+            android:text="@string/post"
+            android:textAlignment="center"
+            android:textColor="@color/sub_strong"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+        <ImageView
+            android:id="@+id/updatePortada"
+            android:layout_width="28dp"
+            android:layout_height="27dp"
+            android:src="@drawable/photo"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/Active"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.873"
+            app:layout_constraintStart_toEndOf="@+id/imgPerfil"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.87" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

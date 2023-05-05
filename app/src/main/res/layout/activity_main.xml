@@ -174,7 +174,7 @@
         android:id="@+id/login_eslogan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/eslogan"
+        android:text="@string/slogan"
         android:fontFamily="@font/regular_font"
         android:textColor="@color/sub"
         android:textSize="12sp"

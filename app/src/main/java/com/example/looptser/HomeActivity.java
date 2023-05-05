@@ -1,18 +1,17 @@
 package com.example.looptser;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.looptser.Fragments.Chat_Fragment;
 import com.example.looptser.Fragments.Home_Fragment;
 import com.example.looptser.Fragments.Notification_Fragment;
 import com.example.looptser.Fragments.Profile_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
-import android.view.MenuItem;
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     BottomNavigationView bottomNavigationView;
@@ -29,7 +28,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = null;
-
         switch (item.getItemId()) {
             case R.id.dashbord:
                 fragment = new Home_Fragment();
