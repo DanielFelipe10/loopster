@@ -24,4 +24,12 @@
     <string name="user_verify_password">Verifique su contraseña</string>
     <string name="user_google_login">INGRESE CON GOOGLE</string>
 
+    <!--    contacts chat values-->
+    <string name="contact_name">Felipe Triana</string>
+    <string name="contact_name_two">La 🅱️andida</string>
+    <string name="contact_msg">Hola, que hace socio</string>
+    <string name="contact_msg_two">Hola mor, un roze por medallo?</string>
+    <string name="contact_msg_stamp">10:30am</string>
+    <string name="contact_msg_stamp_two">12:00pm</string>
+
 </resources>
