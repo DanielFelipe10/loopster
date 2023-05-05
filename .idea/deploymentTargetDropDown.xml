@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="deploymentTargetDropDown">
-    <runningDeviceTargetSelectedWithDropDown>
-      <Target>
-        <type value="RUNNING_DEVICE_TARGET" />
-        <deviceKey>
-          <Key>
-<<<<<<< HEAD
-            <type value="SERIAL_NUMBER" />
-            <value value="M3P6R20723001745" />
-          </Key>
-        </deviceKey>
-      </Target>
-    </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2023-05-03T01:55:28.470461700Z" />
-=======
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\david\.android\avd\Pixel_XL_API_33.avd" />
-          </Key>
-        </deviceKey>
-      </Target>
-    </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2023-05-04T20:47:17.218601100Z" />
->>>>>>> 87ba0a55482b6fbf09745cd1a82fd099e8db0d75
-  </component>
+    <component name="deploymentTargetDropDown">
+        <targetSelectedWithDropDown>
+            <Target>
+                <type value="QUICK_BOOT_TARGET" />
+                <deviceKey>
+                    <Key>
+                        <type value="VIRTUAL_DEVICE_PATH" />
+                        <value value="C:\Users\david\.android\avd\Pixel_XL_API_33.avd" />
+                    </Key>
+                </deviceKey>
+            </Target>
+        </targetSelectedWithDropDown>
+        <timeTargetWasSelectedWithDropDown value="2023-05-04T20:47:17.218601100Z" />
+    </component>
 </project>
