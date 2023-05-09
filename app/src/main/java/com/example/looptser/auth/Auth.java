@@ -12,6 +12,12 @@ public class Auth {
     }
 
     public boolean validateSigninData(String name, String email) {
-        return !Objects.equals(name, "") && !Objects.equals(email, "");
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+        if(email.matches(emailPattern)) {
+            return !Objects.equals(name, "") && !Objects.equals(email, "");
+        } else {
+            return false;
+        }
     }
 }
