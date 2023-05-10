@@ -259,7 +259,7 @@
                     android:layout_width="63dp"
                     android:layout_height="17dp"
                     android:fontFamily="@font/regular_font"
-                    android:text="Sobre mi"
+                    android:text="@string/about_me"
                     android:textColor="@color/sub_strong"
                     android:textSize="12dp"
                     android:textStyle="bold"
@@ -327,7 +327,7 @@
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="79dp"
+            android:layout_width="144dp"
             android:layout_height="22dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/regular_font"

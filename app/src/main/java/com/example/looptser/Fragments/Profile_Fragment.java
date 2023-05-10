@@ -2,14 +2,20 @@ package com.example.looptser.Fragments;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -32,10 +38,12 @@ public class Profile_Fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ImageView uPortada, uPerfil;
-
+    boolean isClicked = false;
+    private ImageView uPortada, uPerfil, dot;
     private ImageView updatePortada;
-
+    private RelativeLayout aboutMe, userState;
+    private TextView activeLabel;
+    Dialog popUp_Dialog;
     public Profile_Fragment() {
         // Required empty public constructor
     }
@@ -91,9 +99,40 @@ public class Profile_Fragment extends Fragment {
             }
         });
 
+        //Mostrar PopUp (Sobre mi)
+        aboutMe = view.findViewById(R.id.SobreMi);
+        popUp_Dialog = new Dialog(requireContext());
+        aboutMe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popUp_Dialog.setContentView(R.layout.pop_up_about_me);
+                popUp_Dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                popUp_Dialog.show();
+            }
+        });
+
+        //Cambio de estado del usuario
+        userState = view.findViewById(R.id.Active);
+        dot = view.findViewById(R.id.dot_active);
+        activeLabel = view.findViewById(R.id.ActivoLabel);
+        userState.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isClicked){
+                    dot.setImageResource(R.drawable.dot_active);
+                    activeLabel.setText(R.string.active);
+                    activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
+                    isClicked = false;
+                }else{
+                    dot.setImageResource(R.drawable.dot_disabled);
+                    activeLabel.setText(R.string.disabled);
+                    activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
+                    isClicked = true;
+                }
+            }
+        });
         return view;
     }
-
 
     //Acceso a la galeria mediante intent
     public void updatePhotoPortada(){

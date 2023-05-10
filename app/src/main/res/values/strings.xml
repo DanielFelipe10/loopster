@@ -3,7 +3,9 @@
     <string name="app_name">looptser</string>
     <string name="user_name">Daniel Tovar</string>
     <string name="user_email_">daniel.tovar@gmail.com</string>
+    <string name="about_me">Sobre mi</string>
     <string name="active">Activo(a)</string>
+    <string name="disabled">Desactivo(a)</string>
     <string name="post">PUBLICACIONES</string>
 
     <!--    login and register values   -->
