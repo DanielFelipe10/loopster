@@ -18,10 +18,6 @@ public class Auth {
     }
 
     public boolean validateSigninData(String name, String email) {
-        if(email.matches(emailPattern)) {
             return !Objects.equals(name, "") && !Objects.equals(email, "");
-        } else {
-            return false;
-        }
     }
 }
