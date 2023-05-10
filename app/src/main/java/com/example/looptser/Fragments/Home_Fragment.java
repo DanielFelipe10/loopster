@@ -53,6 +53,7 @@ public class Home_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 fAuth.signOut();
+                getActivity().finish();
             }
         });
 
