@@ -31,7 +31,6 @@
             android:layout_width="match_parent"
             android:layout_height="162dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/portada_u"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +47,7 @@
             app:layout_constraintStart_toStartOf="@+id/portada"
             app:layout_constraintTop_toTopOf="@+id/portada"
             tools:ignore="MissingConstraints"
-            tools:src="@drawable/perfil" />
+            />
 
         <TextView
             android:id="@+id/textView2"

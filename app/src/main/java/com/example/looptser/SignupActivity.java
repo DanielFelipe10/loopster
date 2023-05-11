@@ -56,7 +56,6 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setMessage("Espera por favor...");
         progressDialog.setCancelable(false);
 
-
         Auth auth = new Auth();
         DialogError dialog = new DialogError();
 
@@ -75,7 +74,6 @@ public class SignupActivity extends AppCompatActivity {
         userEmail = findViewById(R.id.signup_input_email);
         userPassword = findViewById(R.id.signup_input_password);
         userConfirmPassword = findViewById(R.id.signup_input_confirm_password);
-
 
         goToLoginActivity.setOnClickListener(new View.OnClickListener() {
             @Override

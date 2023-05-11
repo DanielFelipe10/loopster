@@ -20,8 +20,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
+import com.example.looptser.HomeActivity;
 import com.example.looptser.R;
+import com.google.firebase.storage.FirebaseStorage;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +37,8 @@ public class Profile_Fragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
+    private FirebaseStorage mStorage;
+
     private String mParam1;
     private String mParam2;
     boolean isClicked = false;
@@ -44,6 +47,7 @@ public class Profile_Fragment extends Fragment {
     private RelativeLayout aboutMe, userState;
     private TextView activeLabel;
     Dialog popUp_Dialog;
+
     public Profile_Fragment() {
         // Required empty public constructor
     }
@@ -81,15 +85,25 @@ public class Profile_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile_, container, false);
 
+        HomeActivity homeActivity = (HomeActivity) getActivity();
+        assert homeActivity != null;
+
+        uPerfil = view.findViewById(R.id.imgPerfil);
+        ((ImageView) uPerfil).setImageBitmap(homeActivity.getuBitPerfil());
+        uPortada = view.findViewById(R.id.portada);
+        ((ImageView) uPortada).setImageBitmap(homeActivity.getuBitBg());
+
+/*
         uPortada = view.findViewById(R.id.portada);
         Glide.with(getActivity())
-                .load(R.drawable.portada_u)
+                .load(R.drawable.perfil)
                 .into(uPortada);
 
         uPerfil = view.findViewById(R.id.imgPerfil);
         Glide.with(this)
                 .load(R.drawable.perfil)
                 .into(uPerfil);
+*/
 
         updatePortada = view.findViewById(R.id.updatePortada);
         updatePortada.setOnClickListener(new View.OnClickListener() {
