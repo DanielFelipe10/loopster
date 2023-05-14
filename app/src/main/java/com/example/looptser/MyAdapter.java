@@ -1,6 +1,7 @@
 package com.example.looptser;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Users users = usersArrayList.get(position);
         holder.userName.setText(users.getName());
         Picasso.get().load(users.getImgUriProfile()).into(holder.userImg);
+
+        // Open user chat
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ChatActivity.class);
+                intent.putExtra("userUid", users.getUid());
+                intent.putExtra("userName", users.getName());
+                intent.putExtra("userImg", users.getImgUriProfile());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
