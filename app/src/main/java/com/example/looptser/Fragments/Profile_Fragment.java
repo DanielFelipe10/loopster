@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -23,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import com.example.looptser.HomeActivity;
 import com.example.looptser.R;
 import com.google.firebase.storage.FirebaseStorage;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,7 +48,8 @@ public class Profile_Fragment extends Fragment {
     private ImageView updatePortada;
     private RelativeLayout aboutMe, userState;
     private TextView activeLabel;
-    Dialog popUp_Dialog;
+    private Dialog popUp_Dialog;
+    private Switch switchMode;
 
     public Profile_Fragment() {
         // Required empty public constructor
@@ -147,21 +150,20 @@ public class Profile_Fragment extends Fragment {
         });
         return view;
     }
-
-    //Acceso a la galeria mediante intent
-    public void updatePhotoPortada(){
-        Intent intentUP = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intentUP.setType("image/");
-        startActivityForResult(intentUP.createChooser(intentUP,"Seleccione"),10);
-    }
-
-    //Verificación de la función e implementación de la nueva imagen
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==RESULT_OK){
-            Uri path = data.getData();
-            uPortada.setImageURI(path);
+        //Acceso a la galeria mediante intent
+        public void updatePhotoPortada(){
+            Intent intentUP = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intentUP.setType("image/");
+            startActivityForResult(intentUP.createChooser(intentUP,"Seleccione"),10);
         }
-    }
+
+        //Verificación de la función e implementación de la nueva imagen
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            if (resultCode==RESULT_OK){
+                Uri path = data.getData();
+                uPortada.setImageURI(path);
+            }
+        }
 }

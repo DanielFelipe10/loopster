@@ -6,10 +6,11 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="389dp"
-        android:layout_height="380dp"
+        android:layout_height="390dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/post_item_shape"
+        style="@style/SCREEN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,6 +24,7 @@
                 android:layout_width="363dp"
                 android:layout_height="273dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/img_post_corners"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -31,15 +33,63 @@
 
             <TextView
                 android:id="@+id/textView6"
-                android:layout_width="359dp"
-                android:layout_height="65dp"
-                android:layout_marginTop="11dp"
-                android:text="@string/example"
+                android:layout_width="363dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/regular_font"
-                android:textSize="13dp"
+                android:padding="5dp"
+                android:text="@string/example"
+                android:textSize="12dp"
+                style="@style/TEXT"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.466"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+            <RelativeLayout
+                android:id="@+id/Share"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="260dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/borders_profile"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/dot_active"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/comment_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/ShareLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular_font"
+                        android:text="@string/coment"
+                        android:textColor="@color/sub_strong"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/dot_active"
+                        app:layout_constraintHorizontal_bias="0.695"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </RelativeLayout>

@@ -4,16 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:layout_margin="10dp"
-    android:padding="10dp"
-    android:background="@drawable/user_item_shape">
+    android:layout_height="65dp"
+    android:layout_margin="7dp"
+    android:padding="5dp"
+    style="@style/CONTAINER">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_image"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,8 +26,8 @@
         android:layout_marginStart="12dp"
         android:fontFamily="@font/visby_font"
         android:text="David"
-        android:textColor="@color/black"
-        android:textSize="25dp"
+        android:textSize="20dp"
+        style="@style/TEXT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView9"
         app:layout_constraintHorizontal_bias="0.0"
@@ -47,8 +46,8 @@
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:layout_marginEnd="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"

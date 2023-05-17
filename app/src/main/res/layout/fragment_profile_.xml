@@ -20,8 +20,8 @@
             android:fontFamily="@font/regular_font"
             android:text="FOTOS"
             android:textAlignment="center"
-            android:textColor="@color/sub_strong"
             android:textStyle="bold"
+            style="@style/TEXT"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -57,9 +57,9 @@
             android:fontFamily="@font/visby_font"
             android:text="@string/user_name"
             android:textAlignment="center"
-            android:textColor="@color/black"
             android:textSize="35sp"
             android:textStyle="bold"
+            style="@style/TEXT"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgPerfil" />
@@ -72,7 +72,7 @@
             android:fontFamily="@font/regular_font"
             android:text="@string/user_email_"
             android:textAlignment="center"
-            android:textColor="@color/light_gray"
+            android:textColor="@color/sub_strong"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,8 +100,8 @@
                     android:fontFamily="@font/visby_font"
                     android:text="358"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="35sp" />
+                    android:textSize="35sp"
+                    style="@style/TEXT"/>
 
                 <TextView
                     android:id="@+id/labelAmigos"
@@ -111,7 +111,7 @@
                     android:text="Amigos"
                     android:textAlignment="center"
                     android:textColor="@color/light_gray"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <View
@@ -133,8 +133,8 @@
                     android:fontFamily="@font/visby_font"
                     android:text="18"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="35sp" />
+                    android:textSize="35sp"
+                    style="@style/TEXT"/>
 
                 <TextView
                     android:id="@+id/labelLoops"
@@ -166,8 +166,8 @@
                     android:fontFamily="@font/visby_font"
                     android:text="147"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="35sp" />
+                    android:textSize="35sp"
+                    style="@style/TEXT"/>
 
                 <TextView
                     android:id="@+id/labelSeguidores"
@@ -332,8 +332,8 @@
             android:fontFamily="@font/regular_font"
             android:text="@string/post"
             android:textAlignment="center"
-            android:textColor="@color/sub_strong"
             android:textStyle="bold"
+            style="@style/TEXT"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
@@ -350,6 +350,17 @@
             app:layout_constraintStart_toEndOf="@+id/imgPerfil"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.87" />
+
+        <Switch
+            android:id="@+id/switchMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toStartOf="@+id/textView3"
+            app:layout_constraintHorizontal_bias="0.459"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SobreMi"
+            app:layout_constraintVertical_bias="0.839" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
