@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -44,13 +43,10 @@ public class Profile_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
     boolean isClicked = false;
-    private ImageView uPortada, uPerfil, dot;
-    private ImageView updatePortada;
+    private ImageView uPortada, uPerfil, dot, updatePortada, editButton;
     private RelativeLayout aboutMe, userState;
     private TextView activeLabel;
-    private Dialog popUp_Dialog;
-    private Switch switchMode;
-
+    private Dialog popUp_Dialog, popUp_edit;
     public Profile_Fragment() {
         // Required empty public constructor
     }
@@ -125,6 +121,17 @@ public class Profile_Fragment extends Fragment {
                 popUp_Dialog.setContentView(R.layout.pop_up_about_me);
                 popUp_Dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 popUp_Dialog.show();
+            }
+        });
+
+        editButton = view.findViewById(R.id.edit_icon);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popUp_edit = new Dialog(requireContext());
+                popUp_edit.setContentView(R.layout.edit_data_user);
+                popUp_edit.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                popUp_edit.show();
             }
         });
 

@@ -202,6 +202,7 @@
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="5dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:scaleType="centerCrop"
                     android:src="@drawable/perfil"
@@ -351,16 +352,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.87" />
 
-        <Switch
-            android:id="@+id/switchMode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toStartOf="@+id/textView3"
-            app:layout_constraintHorizontal_bias="0.459"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SobreMi"
-            app:layout_constraintVertical_bias="0.839" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
