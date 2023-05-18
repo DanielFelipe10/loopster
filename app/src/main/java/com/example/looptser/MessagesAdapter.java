@@ -113,29 +113,6 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                 holder.receiverMessageText.setText(messages.getMessage());
             }
         }
-
-        //alternate send msg layout and receiver msg layout
-//        if (fromMessageType.equals("text")) {
-//            holder.receiverMessageText.setVisibility(View.INVISIBLE);
-//            holder.receiverProfileImage.setVisibility(View.INVISIBLE);
-//            // holder.senderMessageTime.setVisibility(View.INVISIBLE);
-//            holder.receiverMessageText.setText(messages.getMessage());
-//            holder.receiverMessageTime.setText(messages.getTime());
-//            if (fromUserId.equals(messageSenderId)) {
-//                holder.senderMessageText.setText(messages.getMessage());
-//            } else {
-//                holder.senderMessageText.setVisibility(View.INVISIBLE);
-//                holder.senderProfileImage.setVisibility(View.INVISIBLE);
-//                holder.senderMessageTime.setVisibility(View.INVISIBLE);
-//
-//                holder.receiverProfileImage.setVisibility(View.VISIBLE);
-//                holder.receiverMessageText.setVisibility(View.VISIBLE);
-//                holder.receiverProfileImage.setVisibility(View.VISIBLE);
-//
-//                holder.senderMessageText.setText(messages.getMessage());
-//                holder.senderMessageTime.setText(messages.getTime());
-//            }
-//        }
     }
 
     @Override
