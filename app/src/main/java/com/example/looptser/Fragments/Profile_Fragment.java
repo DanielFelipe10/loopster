@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -52,6 +51,7 @@ public class Profile_Fragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+    private TextView name, email;
     boolean isClicked = false;
     private ImageView uPortada, uPerfil, dot;
     private ImageView updatePortada;
@@ -109,6 +109,11 @@ public class Profile_Fragment extends Fragment {
         ((ImageView) uPerfil).setImageBitmap(homeActivity.getuBitPerfil());
         uPortada = view.findViewById(R.id.portada);
         ((ImageView) uPortada).setImageBitmap(homeActivity.getuBitBg());
+
+        name = view.findViewById(R.id.user_name);
+        name.setText(homeActivity.getUserName());
+        email = view.findViewById(R.id.user_email);
+        email.setText(homeActivity.getUserEmail());
 
 /*
         uPortada = view.findViewById(R.id.portada);

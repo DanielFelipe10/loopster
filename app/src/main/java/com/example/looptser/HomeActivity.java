@@ -3,6 +3,7 @@ package com.example.looptser;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -14,11 +15,16 @@ import com.example.looptser.Fragments.Chat_Fragment;
 import com.example.looptser.Fragments.Home_Fragment;
 import com.example.looptser.Fragments.Notification_Fragment;
 import com.example.looptser.Fragments.Profile_Fragment;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -30,8 +36,10 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     BottomNavigationView bottomNavigationView;
 
     private FirebaseStorage mStorage;
+    private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
 
+    private String userName, userEmail;
     private Bitmap uBitPerfil;
     private Bitmap uBitBg;
 
@@ -47,6 +55,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         String currUserUid = user.getUid();
 
         mStorage = FirebaseStorage.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
 
         StorageReference currStorageProfileImgRef = mStorage.getReference().child("users").child(currUserUid).child(currUserUid+"profile.jpg");
         StorageReference currStorageBgImgRef = mStorage.getReference().child("users").child(currUserUid).child(currUserUid+"bg.jpg");
@@ -96,6 +105,33 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //    GET USER INFO
+        DatabaseReference userRef = mDatabase.getReference().child("user").child(currUserUid);
+
+        userRef.child("name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    userName = task.getResult().getValue().toString();
+                }
+            }
+        });
+
+        userRef.child("email").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    userEmail = task.getResult().getValue().toString();
+                }
+            }
+        });
     }
 
     @Override
@@ -162,5 +198,21 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     public void setuBitBg(Bitmap uBitBg) {
         this.uBitBg = uBitBg;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 }
