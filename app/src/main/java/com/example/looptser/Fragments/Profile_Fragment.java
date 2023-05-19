@@ -16,13 +16,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.looptser.HomeActivity;
 import com.example.looptser.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +44,11 @@ public class Profile_Fragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private FirebaseStorage mStorage;
+    private FirebaseDatabase mDatabase;
+    private FirebaseAuth mAuth;
+    private String currUserId;
+
+    String typeImg;
 
     private String mParam1;
     private String mParam2;
@@ -85,6 +96,12 @@ public class Profile_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile_, container, false);
 
+        mStorage = FirebaseStorage.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        currUserId = mAuth.getCurrentUser().getUid();
+        typeImg = "";
+
         HomeActivity homeActivity = (HomeActivity) getActivity();
         assert homeActivity != null;
 
@@ -109,7 +126,17 @@ public class Profile_Fragment extends Fragment {
         updatePortada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updatePhotoPortada();
+                typeImg = "bg";
+                updateImage();
+            }
+        });
+
+        uPerfil = view.findViewById(R.id.imgPerfil);
+        uPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                typeImg = "profile";
+                updateImage();
             }
         });
 
@@ -149,7 +176,7 @@ public class Profile_Fragment extends Fragment {
     }
 
     //Acceso a la galeria mediante intent
-    public void updatePhotoPortada(){
+    public void updateImage(){
         Intent intentUP = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intentUP.setType("image/");
         startActivityForResult(intentUP.createChooser(intentUP,"Seleccione"),10);
@@ -161,7 +188,36 @@ public class Profile_Fragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode==RESULT_OK){
             Uri path = data.getData();
-            uPortada.setImageURI(path);
+
+            if(typeImg.equals("profile")) {
+                StorageReference imgRef =  mStorage.getReference().child("users").child(currUserId).child(currUserId+"profile.jpg");
+                DatabaseReference urlImg = mDatabase.getReference().child("user").child(currUserId).child("imgUriProfile");
+
+                imgRef.delete();
+                imgRef.putFile(path);
+                uPerfil.setImageURI(path);
+
+                imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri downloadPhotoUrl) {
+                        urlImg.setValue(downloadPhotoUrl.toString());
+                    }
+                });
+            } else {
+                StorageReference imgRef =  mStorage.getReference().child("users").child(currUserId).child(currUserId+"bg.jpg");
+                DatabaseReference urlImg = mDatabase.getReference().child("user").child(currUserId).child("imgUriBackground");
+
+                imgRef.delete();
+                imgRef.putFile(path);
+                uPortada.setImageURI(path);
+
+                imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri downloadPhotoUrl) {
+                        urlImg.setValue(downloadPhotoUrl.toString());
+                    }
+                });
+            }
         }
     }
 }
