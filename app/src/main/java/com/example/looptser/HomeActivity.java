@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
 
-    private String userName, userEmail;
+    private String userName, userEmail, userBgUri, userProfileUri;
     private Bitmap uBitPerfil;
     private Bitmap uBitBg;
 
@@ -132,6 +132,30 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 }
             }
         });
+
+        userRef.child("imgUriBackground").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    userBgUri = task.getResult().getValue().toString();
+                }
+            }
+        });
+
+        userRef.child("imgUriProfile").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    userProfileUri = task.getResult().getValue().toString();
+                }
+            }
+        });
     }
 
     @Override
@@ -214,5 +238,21 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public String getUserBgUri() {
+        return userBgUri;
+    }
+
+    public void setUserBgUri(String userBgUri) {
+        this.userBgUri = userBgUri;
+    }
+
+    public String getUserProfileUri() {
+        return userProfileUri;
+    }
+
+    public void setUserProfileUri(String userProfileUri) {
+        this.userProfileUri = userProfileUri;
     }
 }

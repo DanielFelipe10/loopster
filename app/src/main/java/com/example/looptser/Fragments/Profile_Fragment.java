@@ -16,18 +16,24 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.looptser.HomeActivity;
 import com.example.looptser.R;
+import com.example.looptser.users.Users;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,6 +54,7 @@ public class Profile_Fragment extends Fragment {
     private String currUserId;
 
     String typeImg;
+    String userName, userEmail, userBgUri, userProfileUri;
 
     private String mParam1;
     private String mParam2;
@@ -111,10 +118,15 @@ public class Profile_Fragment extends Fragment {
         ((ImageView) uPortada).setImageBitmap(homeActivity.getuBitBg());
 
         name = view.findViewById(R.id.user_name);
-        name.setText(homeActivity.getUserName());
-        email = view.findViewById(R.id.user_email);
-        email.setText(homeActivity.getUserEmail());
+        userName = homeActivity.getUserName();
+        name.setText(userName);
 
+        email = view.findViewById(R.id.user_email);
+        userEmail = homeActivity.getUserEmail();
+        email.setText(userEmail);
+
+        userBgUri = homeActivity.getUserBgUri();
+        userProfileUri = homeActivity.getUserProfileUri();
 /*
         uPortada = view.findViewById(R.id.portada);
         Glide.with(getActivity())
@@ -192,34 +204,67 @@ public class Profile_Fragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode==RESULT_OK){
+            DatabaseReference reference = mDatabase.getReference().child("user").child(currUserId);
             Uri path = data.getData();
 
             if(typeImg.equals("profile")) {
+//                UPLOAD THE PROFILE IMG
                 StorageReference imgRef =  mStorage.getReference().child("users").child(currUserId).child(currUserId+"profile.jpg");
                 DatabaseReference urlImg = mDatabase.getReference().child("user").child(currUserId).child("imgUriProfile");
 
-                imgRef.delete();
-                imgRef.putFile(path);
                 uPerfil.setImageURI(path);
 
-                imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                imgRef.putFile(path).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
-                    public void onSuccess(Uri downloadPhotoUrl) {
-                        urlImg.setValue(downloadPhotoUrl.toString());
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                String finalImgUri = uri.toString();
+                                Users users = new Users(currUserId, userName, userEmail, finalImgUri, userBgUri);
+
+                                reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(getContext(), "Imagen de perfil agredada ✨", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(getContext(), "Error al agregar modificar la imagen 😰", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+                        });
                     }
                 });
             } else {
+//                UPLOAD THE BG
                 StorageReference imgRef =  mStorage.getReference().child("users").child(currUserId).child(currUserId+"bg.jpg");
                 DatabaseReference urlImg = mDatabase.getReference().child("user").child(currUserId).child("imgUriBackground");
 
-                imgRef.delete();
-                imgRef.putFile(path);
                 uPortada.setImageURI(path);
 
-                imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                imgRef.putFile(path).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
-                    public void onSuccess(Uri downloadPhotoUrl) {
-                        urlImg.setValue(downloadPhotoUrl.toString());
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                String finalImgUri = uri.toString();
+                                Users users = new Users(currUserId, userName, userEmail, userProfileUri, finalImgUri);
+
+                                reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(getContext(), "Imagen de portada agredada ✨", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(getContext(), "Error al agregar modificar la imagen 😰", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+                        });
                     }
                 });
             }
