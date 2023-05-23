@@ -13,13 +13,15 @@ import com.example.looptser.notifications.notifications.Notification;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.MyViewHolder> {
     Context context;
     ArrayList<Notification> notificationArrayList;
 
-    public NotificationAdapter(Context context, ArrayList<Notification> postArrayList) {
+    public NotificationAdapter(Context context, ArrayList<Notification> notificationsList) {
         this.context = context;
-        this.notificationArrayList = postArrayList;
+        this.notificationArrayList = notificationsList;
     }
 
     @NonNull
@@ -37,6 +39,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         holder.notificationName.setText(notification.getUserName());
         holder.notificationTime.setText(notification.getTime());
+        holder.notificationImage.setImageResource(R.drawable.icon_loopster);
     }
 
     @Override
@@ -47,12 +50,14 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView notificationName;
         TextView notificationTime;
+        CircleImageView notificationImage;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             notificationName = itemView.findViewById(R.id.notification_username);
             notificationTime = itemView.findViewById(R.id.notification_time);
+            notificationImage = itemView.findViewById(R.id.notification_logo);
         }
     }
 }
