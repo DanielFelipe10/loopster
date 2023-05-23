@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:paddingBottom="20dp">
 
     <RelativeLayout
         android:layout_width="389dp"
@@ -34,8 +35,8 @@
                 android:layout_width="359dp"
                 android:layout_height="65dp"
                 android:layout_marginTop="11dp"
-                android:text="@string/example"
                 android:fontFamily="@font/regular_font"
+                android:text="@string/example"
                 android:textSize="13dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,15 +51,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/post_user_img"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginBottom="4dp"
-                        android:src="@drawable/perfil"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_gravity="center"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/post_user_img"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:src="@drawable/perfil" />
 
                 <TextView
                     android:id="@+id/post_user_name"
