@@ -36,4 +36,8 @@
 
     <string name="example">La tecnología es la suma de técnicas, habilidades,métodos y procesos utilizados en la producción de bienes o servicios o en el logro de objetivos.</string>
 
+    <!-- notifications default values    -->
+    <string name="notification_username">User name</string>
+    <string name="notification_content">Ah hecho un nuevo loop! ✨</string>
+    <string name="notification_time">12:00 pm</string>
 </resources>
