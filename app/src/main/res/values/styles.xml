@@ -7,16 +7,12 @@
         <item name="color">@color/white</item>
     </style>
 
-    <style name="BottomNavigation">
-        <item name="android:background">@color/white</item>
-        <item name="itemIconTint">@color/purple_500</item>
-        <item name="showMotionSpec">@null</item>
-        <item name="hideMotionSpec">@null</item>
-        <item name="itemRippleColor">@null</item>
-    </style>
-
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
         <item name="android:background"></item>
         <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="img_post_corners">
+        <item name="cornerSize">5dp</item>
     </style>
 </resources>

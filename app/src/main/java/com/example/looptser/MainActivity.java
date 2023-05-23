@@ -9,18 +9,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.looptser.auth.Auth;
+import com.example.looptser.utils.DialogError;
+
 
 import com.example.looptser.users.Users;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-
-import com.example.looptser.auth.Auth;
-import com.example.looptser.utils.DialogError;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity  {
     private Button openPrivateActivities;
     private TextView openSignupActivity;
     private Button loginGoogleBtn;
-
     private EditText userEmail;
     private EditText userPassword;
 

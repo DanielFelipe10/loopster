@@ -4,11 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Profile_Fragment">
+    tools:context=".Fragments.Profile_Fragment"
+    style="@style/SCREEN">
 
     <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -20,8 +30,8 @@
             android:fontFamily="@font/regular_font"
             android:text="FOTOS"
             android:textAlignment="center"
-            android:textColor="@color/sub_strong"
             android:textStyle="bold"
+            style="@style/TEXT"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -57,9 +67,9 @@
             android:fontFamily="@font/visby_font"
             android:text="@string/user_name"
             android:textAlignment="center"
-            android:textColor="@color/black"
             android:textSize="35sp"
             android:textStyle="bold"
+            style="@style/TEXT"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgPerfil" />
@@ -72,7 +82,7 @@
             android:fontFamily="@font/regular_font"
             android:text="@string/user_email_"
             android:textAlignment="center"
-            android:textColor="@color/light_gray"
+            android:textColor="@color/sub_strong"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,8 +110,8 @@
                     android:fontFamily="@font/visby_font"
                     android:text="358"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="35sp" />
+                    android:textSize="35sp"
+                    style="@style/TEXT"/>
 
                 <TextView
                     android:id="@+id/labelAmigos"
@@ -111,7 +121,7 @@
                     android:text="Amigos"
                     android:textAlignment="center"
                     android:textColor="@color/light_gray"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <View
@@ -119,7 +129,7 @@
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:background="?android:attr/listDivider" />
+                style="@style/DIVIDER"/>
 
             <LinearLayout
                 android:layout_width="125.3dp"
@@ -133,8 +143,8 @@
                     android:fontFamily="@font/visby_font"
                     android:text="18"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="35sp" />
+                    android:textSize="35sp"
+                    style="@style/TEXT"/>
 
                 <TextView
                     android:id="@+id/labelLoops"
@@ -152,7 +162,7 @@
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
+                style="@style/DIVIDER" />
 
             <LinearLayout
                 android:layout_width="125.3dp"
@@ -166,8 +176,8 @@
                     android:fontFamily="@font/visby_font"
                     android:text="147"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="35sp" />
+                    android:textSize="35sp"
+                    style="@style/TEXT"/>
 
                 <TextView
                     android:id="@+id/labelSeguidores"
@@ -202,6 +212,7 @@
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="5dp"
+                    android:layout_marginStart="55dp"
                     android:layout_weight="1"
                     android:scaleType="centerCrop"
                     android:src="@drawable/perfil"
@@ -233,11 +244,11 @@
             android:id="@+id/SobreMi"
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:background="@drawable/borders_profile"
             app:layout_constraintBottom_toBottomOf="@+id/imgPerfil"
             app:layout_constraintEnd_toStartOf="@+id/imgPerfil"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/portada">
+            app:layout_constraintTop_toBottomOf="@+id/portada"
+            style="@style/PROFILE_BUTTONS">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -259,13 +270,13 @@
                     android:layout_height="17dp"
                     android:fontFamily="@font/regular_font"
                     android:text="@string/about_me"
-                    android:textColor="@color/sub_strong"
                     android:textSize="12dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/more_s"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    style="@style/TEXT"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </RelativeLayout>
@@ -274,11 +285,11 @@
             android:id="@+id/Active"
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:background="@drawable/borders_profile"
             app:layout_constraintBottom_toBottomOf="@+id/imgPerfil"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgPerfil"
-            app:layout_constraintTop_toBottomOf="@+id/portada">
+            app:layout_constraintTop_toBottomOf="@+id/portada"
+            style="@style/PROFILE_BUTTONS">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -300,14 +311,14 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/regular_font"
                     android:text="@string/active"
-                    android:textColor="@color/sub_strong"
                     android:textSize="12dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.238"
                     app:layout_constraintStart_toEndOf="@+id/dot_active"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    style="@style/TEXT"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </RelativeLayout>
 
@@ -332,8 +343,8 @@
             android:fontFamily="@font/regular_font"
             android:text="@string/post"
             android:textAlignment="center"
-            android:textColor="@color/sub_strong"
             android:textStyle="bold"
+            style="@style/TEXT"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
@@ -350,6 +361,18 @@
             app:layout_constraintStart_toEndOf="@+id/imgPerfil"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.87" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/post_item_row">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>

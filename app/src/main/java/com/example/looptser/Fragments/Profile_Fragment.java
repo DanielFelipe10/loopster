@@ -2,6 +2,7 @@ package com.example.looptser.Fragments;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,12 +61,14 @@ public class Profile_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private TextView name, email;
-    boolean isClicked = false;
-    private ImageView uPortada, uPerfil, dot;
+    private ImageView uPortada, uPerfil, dot, editButton, backButton;
     private ImageView updatePortada;
     private RelativeLayout aboutMe, userState;
+    private LinearLayout editView, dataView;
     private TextView activeLabel;
     Dialog popUp_Dialog;
+
+    private Boolean stateUser = false;
 
     public Profile_Fragment() {
         // Required empty public constructor
@@ -97,6 +101,7 @@ public class Profile_Fragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -166,6 +171,29 @@ public class Profile_Fragment extends Fragment {
                 popUp_Dialog.setContentView(R.layout.pop_up_about_me);
                 popUp_Dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 popUp_Dialog.show();
+
+                editButton =popUp_Dialog.findViewById(R.id.edit);
+                backButton = popUp_Dialog.findViewById(R.id.backButton);
+                dataView = popUp_Dialog.findViewById(R.id.dataLayout);
+                editView = popUp_Dialog.findViewById(R.id.editLayout);
+                editButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dataView.setVisibility(View.GONE);
+                        editView.setVisibility(View.VISIBLE);
+                        backButton.setVisibility(View.VISIBLE);
+                        editButton.setVisibility(View.INVISIBLE);
+                    }
+                });
+                backButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        editView.setVisibility(View.GONE);
+                        dataView.setVisibility(View.VISIBLE);
+                        backButton.setVisibility(View.INVISIBLE);
+                        editButton.setVisibility(View.VISIBLE);
+                    }
+                });
             }
         });
 
@@ -176,20 +204,40 @@ public class Profile_Fragment extends Fragment {
         userState.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isClicked){
+                stateUser = !stateUser;
+                if (stateUser){
                     dot.setImageResource(R.drawable.dot_active);
                     activeLabel.setText(R.string.active);
                     activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
-                    isClicked = false;
                 }else{
                     dot.setImageResource(R.drawable.dot_disabled);
                     activeLabel.setText(R.string.disabled);
                     activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
-                    isClicked = true;
                 }
             }
         });
         return view;
+    }
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("STATE", stateUser);
+    }
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState != null) {
+            stateUser = savedInstanceState.getBoolean("STATE");
+            if (stateUser) {
+                dot.setImageResource(R.drawable.dot_active);
+                activeLabel.setText(R.string.active);
+                activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
+            } else {
+                dot.setImageResource(R.drawable.dot_disabled);
+                activeLabel.setText(R.string.disabled);
+                activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
+            }
+        }
     }
 
     //Acceso a la galeria mediante intent
