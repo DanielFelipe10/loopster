@@ -20,9 +20,9 @@
 
             <ImageView
                 android:id="@+id/post_img"
-                android:layout_width="363dp"
-                android:layout_height="273dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="357dp"
+                android:layout_height="245dp"
+                android:layout_marginTop="48dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +40,41 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/post_img" />
+
+            <LinearLayout
+                android:layout_width="387dp"
+                android:layout_height="46dp"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/post_user_img"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/perfil"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/post_user_name"
+                    android:layout_width="303dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="232dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/visby_font"
+                    android:text="@string/post_user"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </RelativeLayout>
