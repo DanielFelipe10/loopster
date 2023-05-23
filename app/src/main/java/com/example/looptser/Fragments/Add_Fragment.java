@@ -2,9 +2,11 @@ package com.example.looptser.Fragments;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -45,22 +47,7 @@ public class Add_Fragment extends Fragment implements EasyPermissions.Permission
         btPick = btPick.findViewById(R.id.bt_pick);
         recyclerView = recyclerView.findViewById(R.id.recyclerView);
 
-        btPick.setOnClickListener(view -> {
-            String[] strings = {
-                    android.Manifest.permission.CAMERA,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE};
-
-            if(EasyPermissions.hasPermissions(this,strings)){
-                imagePicker();
-            }else {
-                EasyPermissions.requestPermissions(
-                        this,
-                        "App needs access to your camera and storage",
-                        100,
-                        strings
-                );
-            }
-        });
+        btPick.setOnClickListener(this::onClick);
     }
 
     @Override
@@ -111,6 +98,23 @@ public class Add_Fragment extends Fragment implements EasyPermissions.Permission
             //Cuando los permisos son denegaos una vezxd
             Toast.makeText(getContext().getApplicationContext(),
                     "Permiso denegao principe",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void onClick(View view) {
+        String[] strings = {
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE};
+
+        if (EasyPermissions.hasPermissions(this, strings)) {
+            imagePicker();
+        } else {
+            EasyPermissions.requestPermissions(
+                    this,
+                    "App needs access to your camera and storage",
+                    100,
+                    strings
+            );
         }
     }
 }
