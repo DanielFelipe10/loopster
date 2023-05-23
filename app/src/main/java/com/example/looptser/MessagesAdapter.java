@@ -33,14 +33,17 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
     public class MessageViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView senderMessageText, receiverMessageText;
+        public TextView senderMessageText, senderMessageTime, receiverMessageText, receiverMessageTime;
         public CircleImageView senderProfileImage, receiverProfileImage;
 
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
             senderMessageText = (TextView) itemView.findViewById(R.id.sender_chat_user_message);
+            senderMessageTime = (TextView) itemView.findViewById(R.id.sender_chat_user_time);
             senderProfileImage = (CircleImageView) itemView.findViewById(R.id.sender_chat_user_image);
+
             receiverMessageText = (TextView) itemView.findViewById(R.id.receiver_chat_user_message);
+            receiverMessageTime = (TextView) itemView.findViewById(R.id.receiver_chat_user_time);
             receiverProfileImage = (CircleImageView) itemView.findViewById(R.id.receiver_chat_user_image);
         }
     }
@@ -85,19 +88,29 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             public void onCancelled(@NonNull DatabaseError error) {}
         });
 
-        //alternate send msg layout and receiver msg layout
-        if (fromMessageType.equals("text")) {
-            holder.receiverMessageText.setVisibility(View.INVISIBLE);
-            holder.receiverProfileImage.setVisibility(View.INVISIBLE);
-            holder.receiverMessageText.setText(messages.getMessage());
-            if (fromUserId.equals(messageSenderId)) {
+        holder.receiverMessageText.setVisibility(View.GONE);
+        holder.receiverProfileImage.setVisibility(View.GONE);
+        holder.receiverMessageTime.setVisibility(View.GONE);
+        holder.senderMessageText.setVisibility(View.GONE);
+        holder.senderProfileImage.setVisibility(View.GONE);
+        holder.senderMessageTime.setVisibility(View.GONE);
+
+        if (fromMessageType.equals("text"))
+        {
+            if (fromUserId.equals(messageSenderId))
+            {
+                holder.senderMessageText.setVisibility(View.VISIBLE);
+                holder.senderMessageTime.setVisibility(View.VISIBLE);
+                holder.senderMessageTime.setText(messages.getTime() + " - " + messages.getDate());
                 holder.senderMessageText.setText(messages.getMessage());
-            } else {
-                holder.senderMessageText.setVisibility(View.INVISIBLE);
-                holder.senderProfileImage.setVisibility(View.INVISIBLE);
+            }
+            else
+            {
                 holder.receiverProfileImage.setVisibility(View.VISIBLE);
                 holder.receiverMessageText.setVisibility(View.VISIBLE);
-                holder.senderMessageText.setText(messages.getMessage());
+                holder.receiverMessageTime.setVisibility(View.VISIBLE);
+                holder.receiverMessageTime.setText(messages.getTime() + " - " + messages.getDate());
+                holder.receiverMessageText.setText(messages.getMessage());
             }
         }
     }

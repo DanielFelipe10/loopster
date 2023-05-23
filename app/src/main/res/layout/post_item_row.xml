@@ -19,13 +19,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imageView10"
                 android:layout_width="363dp"
                 android:layout_height="273dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/img_post_corners"
                 android:scaleType="centerCrop"
+                app:shapeAppearance="@style/img_post_corners"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

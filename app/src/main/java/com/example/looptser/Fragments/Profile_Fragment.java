@@ -2,6 +2,7 @@ package com.example.looptser.Fragments;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,21 +10,37 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.looptser.HomeActivity;
 import com.example.looptser.R;
+import com.example.looptser.users.Users;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,14 +56,24 @@ public class Profile_Fragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private FirebaseStorage mStorage;
+    private FirebaseDatabase mDatabase;
+    private FirebaseAuth mAuth;
+    private String currUserId;
+
+    String typeImg;
+    String userName, userEmail, userBgUri, userProfileUri;
 
     private String mParam1;
     private String mParam2;
+    private TextView name, email;
     boolean isClicked = false;
-    private ImageView uPortada, uPerfil, dot, updatePortada, editButton;
+    private ImageView uPortada, uPerfil, dot, editButton, backButton;
+    private ImageView updatePortada;
     private RelativeLayout aboutMe, userState;
+    private LinearLayout editView, dataView;
     private TextView activeLabel;
-    private Dialog popUp_Dialog, popUp_edit;
+    Dialog popUp_Dialog;
+
     public Profile_Fragment() {
         // Required empty public constructor
     }
@@ -78,11 +105,18 @@ public class Profile_Fragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile_, container, false);
+
+        mStorage = FirebaseStorage.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        currUserId = mAuth.getCurrentUser().getUid();
+        typeImg = "";
 
         HomeActivity homeActivity = (HomeActivity) getActivity();
         assert homeActivity != null;
@@ -92,6 +126,16 @@ public class Profile_Fragment extends Fragment {
         uPortada = view.findViewById(R.id.portada);
         ((ImageView) uPortada).setImageBitmap(homeActivity.getuBitBg());
 
+        name = view.findViewById(R.id.user_name);
+        userName = homeActivity.getUserName();
+        name.setText(userName);
+
+        email = view.findViewById(R.id.user_email);
+        userEmail = homeActivity.getUserEmail();
+        email.setText(userEmail);
+
+        userBgUri = homeActivity.getUserBgUri();
+        userProfileUri = homeActivity.getUserProfileUri();
 /*
         uPortada = view.findViewById(R.id.portada);
         Glide.with(getActivity())
@@ -108,7 +152,17 @@ public class Profile_Fragment extends Fragment {
         updatePortada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updatePhotoPortada();
+                typeImg = "bg";
+                updateImage();
+            }
+        });
+
+        uPerfil = view.findViewById(R.id.imgPerfil);
+        uPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                typeImg = "profile";
+                updateImage();
             }
         });
 
@@ -121,19 +175,35 @@ public class Profile_Fragment extends Fragment {
                 popUp_Dialog.setContentView(R.layout.pop_up_about_me);
                 popUp_Dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 popUp_Dialog.show();
+
+                editButton =popUp_Dialog.findViewById(R.id.edit);
+                backButton = popUp_Dialog.findViewById(R.id.backButton);
+                dataView = popUp_Dialog.findViewById(R.id.dataLayout);
+                editView = popUp_Dialog.findViewById(R.id.editLayout);
+                editButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dataView.setVisibility(View.GONE);
+                        editView.setVisibility(View.VISIBLE);
+                        backButton.setVisibility(View.VISIBLE);
+                        editButton.setVisibility(View.INVISIBLE);
+                    }
+                });
+                backButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        editView.setVisibility(View.GONE);
+                        dataView.setVisibility(View.VISIBLE);
+                        backButton.setVisibility(View.INVISIBLE);
+                        editButton.setVisibility(View.VISIBLE);
+                    }
+                });
             }
         });
 
-        editButton = view.findViewById(R.id.edit_icon);
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                popUp_edit = new Dialog(requireContext());
-                popUp_edit.setContentView(R.layout.edit_data_user);
-                popUp_edit.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                popUp_edit.show();
-            }
-        });
+
+
+
 
         //Cambio de estado del usuario
         userState = view.findViewById(R.id.Active);
@@ -157,20 +227,83 @@ public class Profile_Fragment extends Fragment {
         });
         return view;
     }
-        //Acceso a la galeria mediante intent
-        public void updatePhotoPortada(){
-            Intent intentUP = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            intentUP.setType("image/");
-            startActivityForResult(intentUP.createChooser(intentUP,"Seleccione"),10);
-        }
 
-        //Verificación de la función e implementación de la nueva imagen
-        @Override
-        public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
-            if (resultCode==RESULT_OK){
-                Uri path = data.getData();
+    //Acceso a la galeria mediante intent
+    public void updateImage(){
+        Intent intentUP = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intentUP.setType("image/");
+        startActivityForResult(intentUP.createChooser(intentUP,"Seleccione"),10);
+    }
+
+    //Verificación de la función e implementación de la nueva imagen
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==RESULT_OK){
+            DatabaseReference reference = mDatabase.getReference().child("user").child(currUserId);
+            Uri path = data.getData();
+
+            if(typeImg.equals("profile")) {
+//                UPLOAD THE PROFILE IMG
+                StorageReference imgRef =  mStorage.getReference().child("users").child(currUserId).child(currUserId+"profile.jpg");
+                DatabaseReference urlImg = mDatabase.getReference().child("user").child(currUserId).child("imgUriProfile");
+
+                uPerfil.setImageURI(path);
+
+                imgRef.putFile(path).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                String finalImgUri = uri.toString();
+                                Users users = new Users(currUserId, userName, userEmail, finalImgUri, userBgUri);
+
+                                reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(getContext(), "Imagen de perfil agredada ✨", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(getContext(), "Error al agregar modificar la imagen 😰", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            } else {
+//                UPLOAD THE BG
+                StorageReference imgRef =  mStorage.getReference().child("users").child(currUserId).child(currUserId+"bg.jpg");
+                DatabaseReference urlImg = mDatabase.getReference().child("user").child(currUserId).child("imgUriBackground");
+
                 uPortada.setImageURI(path);
+
+                imgRef.putFile(path).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                String finalImgUri = uri.toString();
+                                Users users = new Users(currUserId, userName, userEmail, userProfileUri, finalImgUri);
+
+                                reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(getContext(), "Imagen de portada agredada ✨", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(getContext(), "Error al agregar modificar la imagen 😰", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
             }
         }
+    }
 }

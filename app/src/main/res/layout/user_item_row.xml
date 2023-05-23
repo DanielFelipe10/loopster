@@ -7,7 +7,7 @@
     android:layout_height="65dp"
     android:layout_margin="7dp"
     android:padding="5dp"
-    style="@style/CONTAINER">
+    style="@style/CHAT_USER">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_image"

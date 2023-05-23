@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity">
+    tools:context=".SplashActivity"
+    style="@style/SCREEN">
 
     <TextView
         android:id="@+id/appTitle"
@@ -13,12 +14,12 @@
         android:layout_marginBottom="24dp"
         android:fontFamily="@font/visby_font"
         android:text="loopster"
-        android:textColor="@color/orange"
-        android:textSize="32dp"
+        android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/TEXT"/>
 
     <TextView
         android:id="@+id/login_eslogan"
@@ -26,17 +27,19 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/regular_font"
         android:text="@string/slogan"
-        android:textColor="@color/sub_strong"
-        android:textSize="12sp"
+        android:textSize="10dp"
         android:textStyle="bold"
+        android:textColor="@color/sub"
         app:layout_constraintBottom_toTopOf="@+id/appTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/TEXT"/>
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="162dp"
-        android:layout_height="199dp"
+        android:layout_width="141dp"
+        android:layout_height="162dp"
         android:layout_marginTop="216dp"
         app:layout_constraintBottom_toTopOf="@+id/login_eslogan"
         app:layout_constraintEnd_toEndOf="parent"

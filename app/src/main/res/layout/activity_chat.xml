@@ -4,14 +4,15 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ChatActivity">
+        tools:context=".ChatActivity"
+        style="@style/SCREEN">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/menu"
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:background="@color/grayDark"
-            android:padding="6dp">
+            android:padding="6dp"
+            style="@style/CONTAINER">
 
             <ImageView
                 android:id="@+id/contact_back_arrow"
@@ -41,14 +42,14 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/regular_font"
                 android:text="David"
-                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.035"
                 app:layout_constraintStart_toEndOf="@+id/contact_img"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/TEXT"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -61,7 +62,7 @@
     <LinearLayout
         android:id="@+id/sendMessageBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
@@ -71,7 +72,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="45dp"
             android:layout_margin="4dp"
             android:layout_weight="1"
             app:cardBackgroundColor="@color/soft_orange"
@@ -84,7 +85,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="@null"
                 android:fontFamily="@font/regular_font"
-                android:hint="Ingresa un mensaje..."
+                android:hint="Mensaje"
                 android:paddingStart="15dp"
                 android:paddingEnd="10dp" />
 
@@ -92,9 +93,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/sendMessageBtn"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_margin="4dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="6dp"
             app:cardBackgroundColor="@color/orange"
             app:cardCornerRadius="50dp">
 
