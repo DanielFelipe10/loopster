@@ -1,66 +1,91 @@
 package com.example.looptser.Fragments;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.looptser.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Add_Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+import javax.xml.transform.OutputKeys;
+
+import droidninja.filepicker.FilePickerBuilder;
+import droidninja.filepicker.FilePickerConst;
+import pub.devrel.easypermissions.EasyPermissions;
+
 public class Add_Fragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    Button btPick;
+    RecyclerView recyclerView;
+    ArrayList <Uri> arrayList = new ArrayList<>();
 
-    public Add_Fragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Add_Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Add_Fragment newInstance(String param1, String param2) {
-        Add_Fragment fragment = new Add_Fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+
+
+        btPick = btPick.findViewById(R.id.bt_pick);
+        recyclerView = recyclerView.findViewById(R.id.recyclerView);
+
+        btPick.setOnClickListener(view -> {
+            String[] strings = {
+                    android.Manifest.permission.CAMERA,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE};
+
+            if(EasyPermissions.hasPermissions(this,strings)){
+                imagePicker();
+            }else {
+                EasyPermissions.requestPermissions(
+                        this,
+                        "App needs access to your camera and storage",
+                        100,
+                        strings
+                );
+            }
+        });
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_, container, false);
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode,permissions,grantResults,this);
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK && data != null){
+            if(requestCode == FilePickerConst.REQUEST_CODE_PHOTO){
+                arrayList = data.getParcelableArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            }
+        }
+    }
+
+    private void imagePicker() {
+        FilePickerBuilder.getInstance()
+                .setActivityTitle("Imagen seleccionada")
+                .setSpan(FilePickerConst.SPAN_TYPE.FOLDER_SPAN, 3)
+                .setSpan(FilePickerConst.SPAN_TYPE.DETAIL_SPAN, 4)
+                .setMaxCount(4)
+                .setSelectedFiles(arrayList)
+                .setActivityTheme(R.style.CustomTheme)
+                .pickPhoto(this);
+
+    }
+
+
 }
