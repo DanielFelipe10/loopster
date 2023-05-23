@@ -14,6 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.looptser.auth.Auth;
 import com.example.looptser.utils.DialogError;
+
+
+import com.example.looptser.users.Users;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -26,6 +30,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.lang.ref.Reference;
 
 
 public class MainActivity extends AppCompatActivity  {
@@ -37,6 +45,9 @@ public class MainActivity extends AppCompatActivity  {
     private static final int RC_SIGN_IN = 9001;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
+    private FirebaseDatabase database;
+
+    private  String userProfileImg, userBackgroundImg;
 
     private Button openPrivateActivities;
     private TextView openSignupActivity;
@@ -54,6 +65,7 @@ public class MainActivity extends AppCompatActivity  {
         DialogError dialog = new DialogError();
 
         mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
 
         openSignupActivity = findViewById(R.id.login_register);
         openPrivateActivities = findViewById(R.id.login_action_btn);
@@ -132,7 +144,24 @@ public class MainActivity extends AppCompatActivity  {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
+                            userProfileImg = "https://firebasestorage.googleapis.com/v0/b/looptser.appspot.com/o/user_default_profile_img.png?alt=media&token=ffcc28de-897b-48b9-b1cb-96c15f5a9ec6";
+                            userBackgroundImg = "https://firebasestorage.googleapis.com/v0/b/looptser.appspot.com/o/user_default_bg.png?alt=media&token=d46bec9f-42e5-4a15-a166-c85167fc57ee";
+
                             FirebaseUser user = mAuth.getCurrentUser();
+                            assert user != null;
+                            String currUserUid = user.getUid();
+
+                            String email = user.getEmail();
+                            String name = user.getDisplayName();
+
+                            DatabaseReference reference = database.getReference().child("user").child(currUserUid);
+                            Users users = new Users(currUserUid, name, email, userProfileImg, userBackgroundImg);
+
+                            reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) { }
+                            });
+
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.

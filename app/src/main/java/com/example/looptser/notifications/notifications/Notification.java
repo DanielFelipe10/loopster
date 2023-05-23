@@ -3,6 +3,8 @@ package com.example.looptser.notifications.notifications;
 public class Notification {
     private String userName, userUid, time;
 
+    public Notification() {}
+
     public Notification(String userName, String userUid, String time) {
         this.userName = userName;
         this.userUid = userUid;

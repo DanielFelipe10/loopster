@@ -43,4 +43,5 @@
     <string name="notification_username">User name</string>
     <string name="notification_content">Ah hecho un nuevo loop! ✨</string>
     <string name="notification_time">12:00 pm</string>
+    <string name="notification_title">Notificaciones</string>
 </resources>
