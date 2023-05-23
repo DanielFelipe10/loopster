@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,17 +14,21 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.looptser.MainAdp;
 import com.example.looptser.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.transform.OutputKeys;
 
 import droidninja.filepicker.FilePickerBuilder;
 import droidninja.filepicker.FilePickerConst;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.AppSettingsDialogHolderActivity;
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class Add_Fragment extends Fragment {
+public class Add_Fragment extends Fragment implements EasyPermissions.PermissionCallbacks{
 
 
     Button btPick;
@@ -71,6 +76,7 @@ public class Add_Fragment extends Fragment {
             if(requestCode == FilePickerConst.REQUEST_CODE_PHOTO){
                 arrayList = data.getParcelableArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.setAdapter(new MainAdp(arrayList));
             }
         }
     }
@@ -88,4 +94,23 @@ public class Add_Fragment extends Fragment {
     }
 
 
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        if(requestCode == 100 && perms.size() == 2){
+            imagePicker();
+        }
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        if(EasyPermissions.somePermissionPermanentlyDenied(this,perms)){
+            //Cuando los permisos son denegaos muchas vecesxd
+
+            new AppSettingsDialog.Builder(this).build().show();
+        }else{
+            //Cuando los permisos son denegaos una vezxd
+            Toast.makeText(getContext().getApplicationContext(),
+                    "Permiso denegao principe",Toast.LENGTH_SHORT).show();
+        }
+    }
 }
