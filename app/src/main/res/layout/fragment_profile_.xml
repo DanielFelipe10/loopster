@@ -8,8 +8,17 @@
     style="@style/SCREEN">
 
     <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -120,7 +129,7 @@
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:background="?android:attr/listDivider" />
+                style="@style/DIVIDER"/>
 
             <LinearLayout
                 android:layout_width="125.3dp"
@@ -153,7 +162,7 @@
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
+                style="@style/DIVIDER" />
 
             <LinearLayout
                 android:layout_width="125.3dp"
@@ -203,7 +212,7 @@
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="5dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="55dp"
                     android:layout_weight="1"
                     android:scaleType="centerCrop"
                     android:src="@drawable/perfil"
@@ -355,4 +364,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/post_item_row">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>

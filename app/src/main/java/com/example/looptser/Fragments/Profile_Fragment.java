@@ -10,15 +10,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Editable;
-import android.text.InputFilter;
-import android.text.InputType;
-import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -66,13 +61,14 @@ public class Profile_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private TextView name, email;
-    boolean isClicked = false;
     private ImageView uPortada, uPerfil, dot, editButton, backButton;
     private ImageView updatePortada;
     private RelativeLayout aboutMe, userState;
     private LinearLayout editView, dataView;
     private TextView activeLabel;
     Dialog popUp_Dialog;
+
+    private Boolean stateUser = false;
 
     public Profile_Fragment() {
         // Required empty public constructor
@@ -201,10 +197,6 @@ public class Profile_Fragment extends Fragment {
             }
         });
 
-
-
-
-
         //Cambio de estado del usuario
         userState = view.findViewById(R.id.Active);
         dot = view.findViewById(R.id.dot_active);
@@ -212,20 +204,40 @@ public class Profile_Fragment extends Fragment {
         userState.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isClicked){
+                stateUser = !stateUser;
+                if (stateUser){
                     dot.setImageResource(R.drawable.dot_active);
                     activeLabel.setText(R.string.active);
                     activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
-                    isClicked = false;
                 }else{
                     dot.setImageResource(R.drawable.dot_disabled);
                     activeLabel.setText(R.string.disabled);
                     activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
-                    isClicked = true;
                 }
             }
         });
         return view;
+    }
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("STATE", stateUser);
+    }
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState != null) {
+            stateUser = savedInstanceState.getBoolean("STATE");
+            if (stateUser) {
+                dot.setImageResource(R.drawable.dot_active);
+                activeLabel.setText(R.string.active);
+                activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
+            } else {
+                dot.setImageResource(R.drawable.dot_disabled);
+                activeLabel.setText(R.string.disabled);
+                activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
+            }
+        }
     }
 
     //Acceso a la galeria mediante intent

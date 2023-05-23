@@ -58,4 +58,14 @@
     <style name="DIVIDER">
         <item name="android:background">@color/semi_transparent</item>
     </style>
+
+    <!-- Post -->
+    <style name="POST">
+        <item name="android:background">@drawable/post_item_shape</item>
+    </style>
+
+    <!-- Post -->
+    <style name="INTERACTIVE_BUTTONS">
+        <item name="android:background">@drawable/interactive_buttons</item>
+    </style>
 </resources>

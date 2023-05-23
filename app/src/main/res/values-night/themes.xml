@@ -48,6 +48,7 @@
         <item name="android:background">@drawable/user_item_shape_dark</item>
     </style>
 
+    <!-- Data user -->
     <style name="DATA_USER">
         <item name="android:background">@drawable/rounded_black_popup_ui</item>
     </style>
@@ -55,5 +56,15 @@
     <!-- Divider -->
     <style name="DIVIDER">
         <item name="android:background">@color/grayLight</item>
+    </style>
+
+    <!-- Post -->
+    <style name="POST">
+        <item name="android:background">@drawable/post_item_shape_dark</item>
+    </style>
+
+    <!-- Post -->
+    <style name="INTERACTIVE_BUTTONS">
+        <item name="android:background">@drawable/interactive_buttons_dark</item>
     </style>
 </resources>
