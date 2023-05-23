@@ -12,24 +12,25 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
+        app:layout_constraintRight_toRightOf="parent"
+        style="@style/SCREEN">
     </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottonnav"
-        style="@style/BottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:elevation="8dp"
-        app:labelVisibilityMode="selected"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_nav">
+        app:menu="@menu/bottom_nav"
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconTint="@color/icon_colors"
+        style="@style/NAVIGATION_BAR">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 

@@ -6,24 +6,26 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/dataContainer"
         android:layout_width="330dp"
         android:layout_height="350dp"
         android:gravity="center"
-        android:background="@drawable/rounded_white_popup_ui"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/DATA_USER">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/linearLayout2"
+                android:id="@+id/dataLayout"
                 android:layout_width="257dp"
                 android:layout_height="230dp"
                 android:orientation="vertical"
+                android:visibility="visible"
                 android:layout_marginTop="45dp"
                 app:layout_constraintBottom_toTopOf="@+id/textView21"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,26 +57,26 @@
                             android:fontFamily="@font/visby_font"
                             android:text="M"
                             android:textAlignment="center"
-                            android:textColor="@color/sub_strong"
                             android:textSize="45dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            style="@style/TEXT"/>
 
                         <TextView
-                            android:id="@+id/titleGender"
+                            android:id="@+id/titleGenderMain"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/regular_font"
                             android:text="Genero"
                             android:textAlignment="center"
                             android:textColor="@color/sub"
-                            android:textSize="15dp"
+                            android:textSize="13dp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <View
                         android:layout_width="2dp"
                         android:layout_height="130dp"
-                        android:background="@color/semi_transparent" />
+                        style="@style/DIVIDER" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -95,9 +97,9 @@
                             android:fontFamily="@font/visby_font"
                             android:text="25"
                             android:textAlignment="center"
-                            android:textColor="@color/sub_strong"
                             android:textSize="45dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            style="@style/TEXT"/>
 
                         <TextView
                             android:id="@+id/titleAge"
@@ -107,7 +109,7 @@
                             android:text="Edad"
                             android:textAlignment="center"
                             android:textColor="@color/sub"
-                            android:textSize="15dp"
+                            android:textSize="13dp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -115,7 +117,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/semi_transparent" />
+                    style="@style/DIVIDER" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -140,21 +142,21 @@
                             android:layout_height="63dp"
                             android:fontFamily="@font/visby_font"
                             android:gravity="bottom"
-                            android:text="10-07-2004"
                             android:textAlignment="center"
-                            android:textColor="@color/sub_strong"
+                            android:text="10-07-2004"
                             android:textSize="35dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            style="@style/TEXT"/>
 
                         <TextView
-                            android:id="@+id/titleDate"
+                            android:id="@+id/titleDateMain"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/regular_font"
                             android:text="Fecha de nacimiento"
                             android:textAlignment="center"
                             android:textColor="@color/sub"
-                            android:textSize="15dp"
+                            android:textSize="13dp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -176,16 +178,138 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
-                android:id="@+id/editImage"
+                android:id="@+id/edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/dataLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/dataedit" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/editLayout"
+                android:layout_width="257dp"
+                android:layout_height="250dp"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/titleGender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/regular_font"
+                            android:text="Ingrese su genero"
+                            android:textAlignment="center"
+                            android:textColor="@color/sub"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/input_gender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/visby_font"
+                            android:text=""
+                            android:hint="M"
+                            android:textColorHint="@color/sub_strong"
+                            android:inputType="text"
+                            android:textAlignment="center"
+                            android:textSize="35dp"
+                            android:textStyle="bold"
+                            android:maxLength="1"
+                            android:backgroundTint="@color/sub"
+                            style="@style/TEXT"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.7"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/titleDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/regular_font"
+                            android:text="Fecha de nacimiento"
+                            android:textAlignment="center"
+                            android:textColor="@color/sub"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/input_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/visby_font"
+                            android:text=""
+                            android:inputType="date"
+                            android:hint="10-07-2004"
+                            android:textColorHint="@color/sub_strong"
+                            android:textAlignment="center"
+                            android:textSize="35dp"
+                            android:maxLength="10"
+                            android:textStyle="bold"
+                            android:backgroundTint="@color/sub"
+                            style="@style/TEXT"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Confirmar"
+                    android:elevation="6dp"
+                    android:fontFamily="@font/visby_font"
+                    android:textColor="@color/white"
+                    android:background="@drawable/rounded_orange_item_ui"
+                    />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="4dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.051"
+                app:srcCompat="@drawable/svg_left_arrow"
+                app:tint="@color/orange" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

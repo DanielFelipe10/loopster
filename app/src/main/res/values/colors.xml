@@ -19,4 +19,5 @@
     <color name="orangePeaches">#ffdbcd</color>
     <color name="soft_orange">#FF7B47</color>
     <color name="semi_transparent">#F4EDED</color>
+    <color name="dmBlack">#323232</color>
 </resources>

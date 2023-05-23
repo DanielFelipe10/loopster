@@ -34,7 +34,10 @@
     <string name="contact_msg_stamp">10:30am</string>
     <string name="contact_msg_stamp_two">12:00pm</string>
 
+
+    <string name="chat_title">Mis loops</string>
     <string name="example">La tecnología es la suma de técnicas, habilidades,métodos y procesos utilizados en la producción de bienes o servicios o en el logro de objetivos.</string>
+    <string name="coment">Comentar</string>
 
     <!-- notifications default values    -->
     <string name="notification_username">User name</string>
