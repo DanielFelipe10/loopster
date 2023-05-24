@@ -14,6 +14,8 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -31,11 +33,19 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,18 +67,18 @@ public class Profile_Fragment extends Fragment {
 
     String typeImg;
     String userName, userEmail, userBgUri, userProfileUri;
-
     private String mParam1;
     private String mParam2;
-    private TextView name, email;
+    private TextView name, email, genderOut, dateOut, ageOut;
     private ImageView uPortada, uPerfil, dot, editButton, backButton;
     private ImageView updatePortada;
     private RelativeLayout aboutMe, userState;
     private LinearLayout editView, dataView;
     private TextView activeLabel;
     Dialog popUp_Dialog;
-
-    private Boolean stateUser = false;
+    private Button submitData;
+    private EditText valueGender, valueDate;
+    private Boolean stateUser = true;
 
     public Profile_Fragment() {
         // Required empty public constructor
@@ -143,6 +153,31 @@ public class Profile_Fragment extends Fragment {
                 .load(R.drawable.perfil)
                 .into(uPerfil);
 */
+        //Cambio de estado del usuario
+        userState = view.findViewById(R.id.Active);
+        dot = view.findViewById(R.id.dot_active);
+        activeLabel = view.findViewById(R.id.ActivoLabel);
+        userState.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (stateUser) {
+                    // El usuario está activo
+                    dot.setImageResource(R.drawable.dot_active);
+                    activeLabel.setText(R.string.active);
+                    activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
+                    stateUser = false;
+                } else {
+                    // El usuario está desactivado
+                    dot.setImageResource(R.drawable.dot_disabled);
+                    activeLabel.setText(R.string.disabled);
+                    activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
+                    stateUser = true;
+                }
+
+                DatabaseReference userRef = mDatabase.getReference().child("user").child(currUserId).child("stateUser");
+                userRef.setValue(stateUser);
+            }
+        });
 
         updatePortada = view.findViewById(R.id.updatePortada);
         updatePortada.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +211,16 @@ public class Profile_Fragment extends Fragment {
                 backButton = popUp_Dialog.findViewById(R.id.backButton);
                 dataView = popUp_Dialog.findViewById(R.id.dataLayout);
                 editView = popUp_Dialog.findViewById(R.id.editLayout);
+
+                submitData = popUp_Dialog.findViewById(R.id.data_button);
+                valueGender = popUp_Dialog.findViewById(R.id.input_gender);
+                valueDate = popUp_Dialog.findViewById(R.id.input_date);
+
+                DatabaseReference userRef = mDatabase.getReference().child("user").child(currUserId);
+
+                genderOut = popUp_Dialog.findViewById(R.id.Gender);
+                dateOut = popUp_Dialog.findViewById(R.id.Date);
+                ageOut = popUp_Dialog.findViewById(R.id.Age);
                 editButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -194,50 +239,89 @@ public class Profile_Fragment extends Fragment {
                         editButton.setVisibility(View.VISIBLE);
                     }
                 });
-            }
-        });
+                submitData.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String gender = valueGender.getText().toString().trim();
+                        String date = valueDate.getText().toString().trim();
 
-        //Cambio de estado del usuario
-        userState = view.findViewById(R.id.Active);
-        dot = view.findViewById(R.id.dot_active);
-        activeLabel = view.findViewById(R.id.ActivoLabel);
-        userState.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                stateUser = !stateUser;
-                if (stateUser){
-                    dot.setImageResource(R.drawable.dot_active);
-                    activeLabel.setText(R.string.active);
-                    activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
-                }else{
-                    dot.setImageResource(R.drawable.dot_disabled);
-                    activeLabel.setText(R.string.disabled);
-                    activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
-                }
+                        DatabaseReference userRef = mDatabase.getReference().child("user").child(currUserId);
+
+                        userRef.child("gender").setValue(gender);
+                        userRef.child("date").setValue(date)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(getContext(), "Datos actualizados", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(getContext(), "Error al enviar los datos", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                        // Cerrar el diálogo después de enviar los datos
+                        popUp_Dialog.dismiss();
+                    }
+                });
+
+                /* Show data user */
+                userRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            String gender = dataSnapshot.child("gender").getValue(String.class);
+                            String dateString = dataSnapshot.child("date").getValue(String.class);
+
+                            if (gender != null && dateString != null) {
+                                genderOut.setText(gender);
+                                dateOut.setText(dateString);
+
+                                Calendar calendarActual = Calendar.getInstance();
+
+                                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                                Date fechaAlmacenada;
+                                try {
+                                    fechaAlmacenada = sdf.parse(dateString);
+                                } catch (ParseException e) {
+                                    throw new RuntimeException(e);
+                                }
+
+                                Calendar calendarAlmacenada = Calendar.getInstance();
+                                calendarAlmacenada.setTime(fechaAlmacenada);
+
+                                int yearActual = calendarActual.get(Calendar.YEAR);
+                                int monthActual = calendarActual.get(Calendar.MONTH) + 1;
+                                int dayActual = calendarActual.get(Calendar.DAY_OF_MONTH);
+
+                                int yearUser = calendarAlmacenada.get(Calendar.YEAR);
+                                int monthUser = calendarAlmacenada.get(Calendar.MONTH) + 1;
+                                int dayUser = calendarAlmacenada.get(Calendar.DAY_OF_MONTH);
+
+                                int edad = yearActual - yearUser;
+                                if (monthActual < monthUser) {
+                                    edad--;
+                                } else if (monthActual == monthUser && dayActual < dayUser) {
+                                    edad--;
+                                }
+                                String age = String.valueOf(edad);
+                                ageOut.setText(age);
+                            }else{
+                                userRef.child("gender").setValue("N");
+                                userRef.child("date").setValue("22-11-0000");
+                                genderOut.setText(gender);
+                                dateOut.setText(dateString);
+                                ageOut.setText("0");
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(getContext(), "Error al leer los datos: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         return view;
-    }
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean("STATE", stateUser);
-    }
-    @Override
-    public void onViewStateRestored(Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        if (savedInstanceState != null) {
-            stateUser = savedInstanceState.getBoolean("STATE");
-            if (stateUser) {
-                dot.setImageResource(R.drawable.dot_active);
-                activeLabel.setText(R.string.active);
-                activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
-            } else {
-                dot.setImageResource(R.drawable.dot_disabled);
-                activeLabel.setText(R.string.disabled);
-                activeLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
-            }
-        }
     }
 
     //Acceso a la galeria mediante intent

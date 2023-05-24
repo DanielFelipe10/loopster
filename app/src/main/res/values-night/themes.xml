@@ -63,7 +63,7 @@
         <item name="android:background">@drawable/post_item_shape_dark</item>
     </style>
 
-    <!-- Post -->
+    <!-- Buttons -->
     <style name="INTERACTIVE_BUTTONS">
         <item name="android:background">@drawable/interactive_buttons_dark</item>
     </style>

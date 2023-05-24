@@ -64,7 +64,7 @@
         <item name="android:background">@drawable/post_item_shape</item>
     </style>
 
-    <!-- Post -->
+    <!-- Buttons -->
     <style name="INTERACTIVE_BUTTONS">
         <item name="android:background">@drawable/interactive_buttons</item>
     </style>
