@@ -1,14 +1,15 @@
 package com.example.looptser.notifications.notifications;
 
 public class Notification {
-    private String userName, userUid, time;
+    private String userName, userUid, time, userProfile;
 
     public Notification() {}
 
-    public Notification(String userName, String userUid, String time) {
+    public Notification(String userName, String userProfile, String userUid, String time) {
         this.userName = userName;
         this.userUid = userUid;
         this.time = time;
+        this.userProfile = userProfile;
     }
 
     public String getUserName() {
@@ -33,5 +34,13 @@ public class Notification {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(String userProfile) {
+        this.userProfile = userProfile;
     }
 }

@@ -199,7 +199,7 @@ public class Add_Fragment extends Fragment {
                                 });
 
                                 // add new notification
-                                Notification notification = new Notification(userName, currUserId, saveCurrentTime);
+                                Notification notification = new Notification(userName, userProfile,currUserId, saveCurrentTime);
                                 notificationsList.add(notification);
                                 Notifications notifications = new Notifications(notificationsList);
 
