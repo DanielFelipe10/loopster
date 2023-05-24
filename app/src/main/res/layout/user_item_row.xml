@@ -21,12 +21,12 @@
 
     <TextView
         android:id="@+id/user_name"
-        android:layout_width="wrap_content"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/visby_font"
         android:text="David"
-        android:textSize="20dp"
+        android:textSize="16dp"
         style="@style/TEXT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView9"
@@ -36,21 +36,12 @@
         app:layout_constraintVertical_bias="0.52" />
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/more_icon" />
-
-    <ImageView
         android:id="@+id/imageView9"
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/dot_active" />
 

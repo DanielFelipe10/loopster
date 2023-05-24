@@ -4,6 +4,8 @@ public class Post {
     private String postImage, postDescription, userUid, userName, userImage;
     private String date;
 
+    public Post() {}
+
     public Post(String postImage, String postDescription, String userUid,String userName, String userImage, String date) {
         this.postImage = postImage;
         this.postDescription = postDescription;

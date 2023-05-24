@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> {
     Context context;
     ArrayList<Post> postArrayList;
@@ -39,6 +41,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
 
         holder.postDescription.setText(post.getPostDescription());
         Picasso.get().load(post.getPostImage()).into(holder.postImage);
+        Picasso.get().load(post.getUserImage()).into(holder.postProfileImage);
     }
 
     @Override
@@ -49,12 +52,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView postImage;
         TextView postDescription;
+        CircleImageView postProfileImage;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             postImage = itemView.findViewById(R.id.post_img);
             postDescription = itemView.findViewById(R.id.post_description);
+            postProfileImage = itemView.findViewById(R.id.post_user_image);
         }
     }
 }

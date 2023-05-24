@@ -5,12 +5,12 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.looptser.Fragments.Add_Fragment;
 import com.example.looptser.Fragments.Chat_Fragment;
 import com.example.looptser.Fragments.Home_Fragment;
 import com.example.looptser.Fragments.Notification_Fragment;
@@ -174,6 +174,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.profile:
                 fragment = new Profile_Fragment();
                 break;
+            case R.id.add:
+                fragment = new Add_Fragment();
         }
 
         if (fragment != null) {

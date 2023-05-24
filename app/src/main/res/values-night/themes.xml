@@ -67,4 +67,9 @@
     <style name="INTERACTIVE_BUTTONS">
         <item name="android:background">@drawable/interactive_buttons_dark</item>
     </style>
+
+    <!-- Comment -->
+    <style name="COMMENT">
+        <item name="android:background">@drawable/borders_profile_dark</item>
+    </style>
 </resources>

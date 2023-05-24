@@ -4,14 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         style="@style/POST"
-        android:layout_width="389dp"
+        android:layout_width="match_parent"
         android:layout_height="390dp"
-        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,9 +22,11 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/post_img"
-                android:layout_width="363dp"
+                android:layout_width="match_parent"
                 android:layout_height="273dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,12 +37,15 @@
             <TextView
                 android:id="@+id/post_description"
                 style="@style/TEXT"
-                android:layout_width="359dp"
-                android:layout_height="65dp"
-                android:fontFamily="@font/regular_font"
-                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/visby_font"
+                android:padding="7dp"
                 android:text="@string/example"
-                android:textSize="12dp"
+                android:textSize="13dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/post_img" />
@@ -50,8 +55,8 @@
                 style="@style/PROFILE_BUTTONS"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
-                android:layout_marginBottom="230dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginBottom="230dp"
                 app:layout_constraintBottom_toBottomOf="@+id/post_img"
                 app:layout_constraintStart_toStartOf="@+id/post_img"
                 app:layout_constraintTop_toTopOf="@+id/post_img">
@@ -64,11 +69,12 @@
                         android:id="@+id/post_user_image"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:layout_marginStart="4dp"
                         android:src="@drawable/perfil"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/userLabel"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.6" />
 
                     <ImageView
                         android:id="@+id/dot_active"
@@ -226,11 +232,11 @@
 
             <RelativeLayout
                 android:id="@+id/comment"
-                style="@style/PROFILE_BUTTONS"
+                style="@style/COMMENT"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="250dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginStart="210dp"
+                android:layout_marginBottom="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

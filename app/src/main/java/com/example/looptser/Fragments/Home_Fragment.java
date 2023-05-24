@@ -8,21 +8,22 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.looptser.PostAdapter;
 import com.example.looptser.R;
 import com.example.looptser.notifications.notifications.Notification;
-import com.example.looptser.notifications.notifications.Notifications;
 import com.example.looptser.posts.Post;
-import com.example.looptser.posts.Posts;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class Home_Fragment extends Fragment {
 
@@ -30,6 +31,8 @@ public class Home_Fragment extends Fragment {
     private FirebaseDatabase database;
     private String currUserId;
 
+    private RecyclerView postRecycler;
+    private PostAdapter adapter;
     private ArrayList<Post> postsList;
     private ArrayList<Notification> notificationsList;
 
@@ -70,59 +73,31 @@ public class Home_Fragment extends Fragment {
         postsList = new ArrayList<>();
         notificationsList = new ArrayList<>();
 
-        Button addPost = view.findViewById(R.id.postTest);
+        DatabaseReference reference = database.getReference("posts").child("postsList");
 
-        addPost.setOnClickListener(new View.OnClickListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                DatabaseReference postReference = database.getReference().child("posts");
-                DatabaseReference notificationReference = database.getReference().child("notifications");
-
-                Calendar calendar = Calendar.getInstance();
-
-                //get current date mm/dd/yyyy
-                SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
-                String saveCurrentDate = currentDate.format(calendar.getTime());
-
-                //get current time hh:mm:ss pm/am
-                SimpleDateFormat currentTime = new SimpleDateFormat("hh:mm a");
-                String saveCurrentTime = currentTime.format(calendar.getTime());
-
-                //add new post
-                Post post = new Post("http://img", "description example",currUserId, "david", "http://localhost",  saveCurrentDate);
-                postsList.add(post);
-                Posts posts = new Posts(postsList);
-
-                postReference.setValue(posts).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
+            public void onDataChange(@NonNull DataSnapshot snapshot ) {
+                FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+                String fUserUid = fUser.getUid();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Post post = dataSnapshot.getValue(Post.class);
+                    if(!fUserUid.equals(post.getUserUid())) {
+                        postsList.add(post);
                     }
-                });
-
-                // add new notification
-                Notification notification = new Notification("david", currUserId, saveCurrentTime);
-                notificationsList.add(notification);
-                Notifications notifications = new Notifications(notificationsList);
-
-                notificationReference.setValue(notifications).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                    }
-                });
+                }
+                adapter.notifyDataSetChanged();
             }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error ) { }
         });
 
-        Button mName = view.findViewById(R.id.testLog);
-
-        mName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fAuth.signOut();
-                getActivity().finish();
-            }
-        });
+        postRecycler = view.findViewById(R.id.recyclerView);
+        postRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        postRecycler.setHasFixedSize(false);
+        adapter = new PostAdapter(getContext(), postsList);
+        postRecycler.setAdapter(adapter);
 
         return view;
     }
