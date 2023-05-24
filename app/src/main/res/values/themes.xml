@@ -15,57 +15,70 @@
     </style>
 
 
-    <!-- Light mode -->
-    <!-- Screen background light mode -->
-    <style name="SCREEN">
-        <item name="android:background">#FFF</item>
-    </style>
+  <!--    imagePicker custom details-->
+      <style name="CustomTheme" parent="Theme.MaterialComponents.NoActionBar">
+          <item name="colorPrimary">@color/purple_500</item>
+          <item name="toolbarStyle">@style/ToolbarTheme</item>
+      </style>
+      <style name="ThemeOverlay.App.Toolbar.Light." parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+          <item name="colorOnPrimary">@color/white</item>
+      </style>
+      <style name="SmoothCheckBoxStyle.">
+          <item name="color_checked">@color/purple_500</item>
+          <item name="color_tick">@color/white</item>
 
-    <!-- Text light mode -->
-    <style name="TEXT">
-        <item name="android:textColor">#000</item>
-    </style>
+      <!-- Light mode -->
+      <!-- Screen background light mode -->
+      <style name="SCREEN">
+          <item name="android:background">#FFF</item>
+      </style>
 
-    <!-- Container -->
-    <style name="CONTAINER">
-        <item name="android:background">#DFDFDF</item>
-    </style>
+      <!-- Text light mode -->
+      <style name="TEXT">
+          <item name="android:textColor">#000</item>
+      </style>
 
-    <!-- Navigation bar -->
-    <style name="NAVIGATION_BAR">
-        <item name="android:background">@color/white</item>
-        <item name="showMotionSpec">@null</item>
-        <item name="hideMotionSpec">@null</item>
-        <item name="itemRippleColor">@null</item>
-    </style>
+      <!-- Container -->
+      <style name="CONTAINER">
+          <item name="android:background">#DFDFDF</item>
+      </style>
 
-    <!-- Buttons on profile -->
-    <style name="PROFILE_BUTTONS">
-        <item name="android:background">@drawable/borders_profile</item>
-    </style>
+      <!-- Navigation bar -->
+      <style name="NAVIGATION_BAR">
+          <item name="android:background">@color/white</item>
+          <item name="showMotionSpec">@null</item>
+          <item name="hideMotionSpec">@null</item>
+          <item name="itemRippleColor">@null</item>
+      </style>
 
-    <!-- Chat users -->
-    <style name="CHAT_USER">
-        <item name="android:background">@drawable/user_item_shape</item>
-    </style>
+      <!-- Buttons on profile -->
+      <style name="PROFILE_BUTTONS">
+          <item name="android:background">@drawable/borders_profile</item>
+      </style>
 
-    <!-- Data user -->
-    <style name="DATA_USER">
-        <item name="android:background">@drawable/rounded_white_popup_ui</item>
-    </style>
+      <!-- Chat users -->
+      <style name="CHAT_USER">
+          <item name="android:background">@drawable/user_item_shape</item>
+      </style>
 
-    <!-- Divider -->
-    <style name="DIVIDER">
-        <item name="android:background">@color/semi_transparent</item>
-    </style>
+      <!-- Data user -->
+      <style name="DATA_USER">
+          <item name="android:background">@drawable/rounded_white_popup_ui</item>
+      </style>
 
-    <!-- Post -->
-    <style name="POST">
-        <item name="android:background">@drawable/post_item_shape</item>
-    </style>
+      <!-- Divider -->
+      <style name="DIVIDER">
+          <item name="android:background">@color/semi_transparent</item>
+      </style>
 
-    <!-- Post -->
-    <style name="INTERACTIVE_BUTTONS">
-        <item name="android:background">@drawable/interactive_buttons</item>
-    </style>
+      <!-- Post -->
+      <style name="POST">
+          <item name="android:background">@drawable/post_item_shape</item>
+      </style>
+
+      <!-- Post -->
+      <style name="INTERACTIVE_BUTTONS">
+          <item name="android:background">@drawable/interactive_buttons</item>
+
+      </style>
 </resources>
