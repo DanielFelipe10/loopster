@@ -93,16 +93,6 @@ public class Home_Fragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error ) { }
         });
 
-        Button mName = view.findViewById(R.id.testLog);
-
-        mName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fAuth.signOut();
-                getActivity().finish();
-            }
-        });
-
         postRecycler = view.findViewById(R.id.recyclerView);
         postRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         postRecycler.setHasFixedSize(false);

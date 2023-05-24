@@ -132,17 +132,6 @@ public class Profile_Fragment extends Fragment {
 
         userBgUri = homeActivity.getUserBgUri();
         userProfileUri = homeActivity.getUserProfileUri();
-/*
-        uPortada = view.findViewById(R.id.portada);
-        Glide.with(getActivity())
-                .load(R.drawable.perfil)
-                .into(uPortada);
-
-        uPerfil = view.findViewById(R.id.imgPerfil);
-        Glide.with(this)
-                .load(R.drawable.perfil)
-                .into(uPerfil);
-*/
 
         updatePortada = view.findViewById(R.id.updatePortada);
         updatePortada.setOnClickListener(new View.OnClickListener() {
