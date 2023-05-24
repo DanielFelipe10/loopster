@@ -53,4 +53,7 @@ dependencies {
 
     //download images
     implementation 'com.squareup.picasso:picasso:2.8'
+
+    //ads
+    implementation 'com.google.android.gms:play-services-ads:22.1.0'
 }
