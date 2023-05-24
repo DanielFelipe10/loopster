@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-  <<<<<<< master
+
   <!--    imagePicker custom details-->
       <style name="CustomTheme" parent="Theme.MaterialComponents.NoActionBar">
           <item name="colorPrimary">@color/purple_500</item>
@@ -26,7 +26,6 @@
       <style name="SmoothCheckBoxStyle.">
           <item name="color_checked">@color/purple_500</item>
           <item name="color_tick">@color/white</item>
-  =======
 
       <!-- Light mode -->
       <!-- Screen background light mode -->
@@ -80,6 +79,6 @@
       <!-- Post -->
       <style name="INTERACTIVE_BUTTONS">
           <item name="android:background">@drawable/interactive_buttons</item>
-  >>>>>>> master
+
       </style>
 </resources>
