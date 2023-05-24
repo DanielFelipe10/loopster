@@ -50,6 +50,7 @@
 
     <!-- posts values  -->
     <string name="post_user">User name</string>
+    <string name="post_date">May 13, 2023</string>
 
     <!--  add values  -->
     <string name="add_post">Agrega un post</string>

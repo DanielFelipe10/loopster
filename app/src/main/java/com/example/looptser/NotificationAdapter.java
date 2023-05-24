@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.looptser.notifications.notifications.Notification;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -39,7 +40,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         holder.notificationName.setText(notification.getUserName());
         holder.notificationTime.setText(notification.getTime());
-        holder.notificationImage.setImageResource(R.drawable.icon_loopster);
+        Picasso.get().load(notification.getUserProfile()).into(holder.notificationImage);
     }
 
     @Override
