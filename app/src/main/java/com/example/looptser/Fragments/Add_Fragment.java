@@ -2,6 +2,7 @@ package com.example.looptser.Fragments;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,9 +18,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.looptser.HomeActivity;
 import com.example.looptser.R;
+import com.example.looptser.SignupActivity;
 import com.example.looptser.notifications.notifications.Notification;
 import com.example.looptser.notifications.notifications.Notifications;
 import com.example.looptser.posts.Post;
@@ -55,6 +58,8 @@ public class Add_Fragment extends Fragment {
 
     private ArrayList<Post> postsList;
     private ArrayList<Notification> notificationsList;
+
+    ProgressDialog progressDialog;
 
     private Uri path;
     private Button publishBtn;
@@ -109,6 +114,10 @@ public class Add_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_, container, false);
 
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Estamos publicando tu loop 😊.");
+        progressDialog.setCancelable(false);
+
         HomeActivity homeActivity = (HomeActivity) getActivity();
 
         auth = FirebaseAuth.getInstance();
@@ -160,6 +169,7 @@ public class Add_Fragment extends Fragment {
         publishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
                 int len = postsList.size()+1;
                 String parseLen = Integer.toString(len);
                 StorageReference storageReference = storage.getReference().child("users").child(currUserId).child("posts").child(parseLen+".jpg");
@@ -194,7 +204,7 @@ public class Add_Fragment extends Fragment {
                                 postReferenceAdd.setValue(posts).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-
+                                        progressDialog.dismiss();
                                     }
                                 });
 
@@ -206,9 +216,14 @@ public class Add_Fragment extends Fragment {
                                 notificationReferenceAdd.setValue(notifications).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-
+                                        progressDialog.dismiss();
+                                        Toast.makeText(getContext(), "Se a publicado tu loop! 😊", Toast.LENGTH_SHORT).show();
                                     }
                                 });
+
+                                //set by default the values
+                                postDescription.setText("");
+                                postImage.setImageResource(R.drawable.photo_orange);
                             }
                         });
                     }
