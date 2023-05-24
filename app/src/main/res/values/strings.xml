@@ -37,7 +37,7 @@
 
     <string name="chat_title">Mis loops</string>
     <string name="example">La tecnología es la suma de técnicas, habilidades,métodos y procesos utilizados en la producción de bienes o servicios o en el logro de objetivos.</string>
-    
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="coment">Comentar</string>
@@ -50,4 +50,10 @@
 
     <!-- posts values  -->
     <string name="post_user">User name</string>
+
+    <!--  add values  -->
+    <string name="add_post">Agrega un post</string>
+    <string name="add_description_input">Descripción para tus loops ✨</string>
+    <string name="add_publish">Publicar</string>
+    <string name="add_img_title">Selecciona una imagen</string>
 </resources>
