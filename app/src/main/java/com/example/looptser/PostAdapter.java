@@ -40,6 +40,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
         Post post = postArrayList.get(position);
 
         holder.postDescription.setText(post.getPostDescription());
+        holder.postDate.setText(post.getDate());
         Picasso.get().load(post.getPostImage()).into(holder.postImage);
         Picasso.get().load(post.getUserImage()).into(holder.postProfileImage);
     }
@@ -51,7 +52,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView postImage;
-        TextView postDescription;
+        TextView postDescription, postDate;
         CircleImageView postProfileImage;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -60,6 +61,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
             postImage = itemView.findViewById(R.id.post_img);
             postDescription = itemView.findViewById(R.id.post_description);
             postProfileImage = itemView.findViewById(R.id.post_user_image);
+            postDate = itemView.findViewById(R.id.post_date);
         }
     }
 }
