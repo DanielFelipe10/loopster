@@ -54,7 +54,7 @@
 
     <!--  add values  -->
     <string name="add_post">Agrega un post</string>
-    <string name="add_description_input">Descripción para tus loops ✨</string>
+    <string name="add_description_input">Añade una descripción para tu post</string>
     <string name="add_publish">Publicar</string>
     <string name="add_img_title">Selecciona una imagen</string>
 </resources>

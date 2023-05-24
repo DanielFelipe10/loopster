@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Add_Fragment">
+    tools:context=".Fragments.Add_Fragment"
+    style="@style/SCREEN">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         style="@style/SCREEN"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:elevation="10dp"
+        android:elevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -37,11 +38,13 @@
 
             <Button
                 android:id="@+id/add_publish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="125dp"
+                android:layout_height="40dp"
                 android:background="@drawable/rounded_soft_orange_item_ui"
                 android:text="@string/add_publish"
                 android:textColor="@color/white"
+                android:fontFamily="@font/visby_font"
+                android:textSize="13dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.866"
@@ -67,26 +70,30 @@
 
     <TextView
         android:id="@+id/add_img_title"
+        style="@style/TEXT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/regular_font"
+        android:fontFamily="@font/visby_font"
         android:text="@string/add_img_title"
-        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/add_img"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.937" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.893" />
 
     <EditText
         android:id="@+id/add_input"
-        android:layout_width="311dp"
-        android:layout_height="48dp"
+        style="@style/TEXT"
+        android:layout_width="308dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="92dp"
+        android:backgroundTint="@color/orange"
         android:ems="10"
+        android:fontFamily="@font/regular_font"
         android:hint="@string/add_description_input"
-        android:inputType="textPersonName"
+        android:inputType="text"
+        android:textColorHint="@color/sub"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.55"

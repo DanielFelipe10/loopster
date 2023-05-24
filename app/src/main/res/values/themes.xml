@@ -63,6 +63,11 @@
           <item name="android:background">@drawable/user_item_shape</item>
       </style>
 
+    <!-- Buttons -->
+    <style name="INTERACTIVE_BUTTONS">
+        <item name="android:background">@drawable/interactive_buttons</item>
+    </style>
+
       <!-- Data user -->
       <style name="DATA_USER">
           <item name="android:background">@drawable/rounded_white_popup_ui</item>
@@ -78,9 +83,10 @@
           <item name="android:background">@drawable/post_item_shape</item>
       </style>
 
-      <!-- Post -->
-      <style name="INTERACTIVE_BUTTONS">
-          <item name="android:background">@drawable/interactive_buttons</item>
+    <!-- Comment -->
+    <style name="COMMENT">
+        <item name="android:background">@drawable/comment_shape</item>
+    </style>
 
-      </style>
 </resources>
+

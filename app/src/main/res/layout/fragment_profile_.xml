@@ -215,7 +215,7 @@
                     android:layout_marginStart="55dp"
                     android:layout_weight="1"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/perfil"
+                    android:src="@drawable/not_image"
                     app:shapeAppearanceOverlay="@style/border_radius" />
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -225,7 +225,7 @@
                     android:layout_marginEnd="5dp"
                     android:layout_weight="1"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/perfil"
+                    android:src="@drawable/not_image"
                     app:shapeAppearanceOverlay="@style/border_radius" />
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -235,7 +235,7 @@
                     android:layout_marginEnd="5dp"
                     android:layout_weight="1"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/perfil"
+                    android:src="@drawable/not_image"
                     app:shapeAppearanceOverlay="@style/border_radius" />
             </LinearLayout>
         </HorizontalScrollView>
